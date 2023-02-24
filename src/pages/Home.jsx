@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "../components/Hero";
+import SeccionBievenida from "../components/SeccionBievenida";
 
 const Home = () => {
   return (
@@ -7,7 +8,9 @@ const Home = () => {
       <Hero />
       <br />
       <br />
-      <p>TEWST</p>
+      <br />
+
+      <SeccionBievenida />
     </div>
   );
 };
