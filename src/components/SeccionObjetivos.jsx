@@ -2,8 +2,9 @@ import React from "react";
 
 const SeccionObjetivos = () => {
   return (
-    <section className="bg-cyan-900 text-white">
-      <div className="max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
+    <section className="container md:px-40 bg-cyan-900 text-white">
+      {/* <div className="max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8"> */}
+      <div className="max-w-screen-xl p-4 py-20">
         <div className="max-w-xl">
           <h2 className="text-3xl font-bold sm:text-4xl">
             What makes us special

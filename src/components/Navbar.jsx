@@ -9,6 +9,11 @@ const navigation = [
   { name: "Quiénes somos", href: "/quienessomos", current: false },
 ];
 
+const navigation_auth = [
+  { name: "Iniciar Sesión", href: "/login", current: true },
+  { name: "Registrarse", href: "/registrarse", current: false },
+];
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -22,8 +27,8 @@ export const Navbar = () => {
 
   return (
     <>
-      <header aria-label="Site Header" className="bg-cyan-800">
-        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <header aria-label="Site Header" className=" bg-cyan-800">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 ">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
               <a className="block text-teal-600" href="/">
@@ -56,20 +61,20 @@ export const Navbar = () => {
 
             <div className="flex items-center gap-4">
               <div className="hidden sm:flex sm:gap-4">
-                <a
-                  className="rounded-md bg-cyan-700 px-5 py-2.5 text-sm font-medium text-white shadow"
-                  href="/"
+                <Link
+                  className="rounded-md bg-cyan-700 px-5 py-2.5 text-sm font-medium text-white shadow "
+                  to={"AdoptappCL/login"}
                 >
                   iniciar Sesión
-                </a>
+                </Link>
 
                 <div className="hidden sm:flex">
-                  <a
+                  <Link
                     className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-cyan-700"
-                    href="/"
+                    to={"AdoptappCL/registrarse"}
                   >
                     Registrarse
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -109,8 +114,17 @@ export const Navbar = () => {
                 </Link>
               ))}
 
-              <p className="p-2 font-medium mt-5">Iniciar Sesión</p>
-              <p className="p-2 font-medium ">Registrarse</p>
+              <div className="my-3"></div>
+
+              {navigation_auth.map((item) => (
+                <Link
+                  to={"AdoptappCL" + item.href}
+                  key={item.name}
+                  className="p-2 font-medium"
+                >
+                  {item.name}
+                </Link>
+              ))}
             </ul>
           </div>
         </div>
