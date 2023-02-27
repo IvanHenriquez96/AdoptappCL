@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "../components/Hero";
 import SeccionBievenida from "../components/SeccionBievenida";
+import SeccionObjetivos from "../components/SeccionObjetivos";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <br />
 
       <SeccionBievenida />
+      <SeccionObjetivos />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink } from "react-router-dom";
@@ -14,73 +14,107 @@ function classNames(...classes) {
 }
 
 export const Navbar = () => {
+  const toggleMenu = (e) => {
+    const seccion_menu = document.querySelector("#seccion_menu");
+    // console.log("test");
+    seccion_menu.classList.toggle("hidden");
+  };
+
   return (
-    <Disclosure as="nav" className="bg-cyan-800">
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
+    <>
+      <header aria-label="Site Header" className="bg-cyan-800">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="md:flex md:items-center md:gap-12">
+              <a className="block text-teal-600" href="/">
+                <span className="sr-only">Home</span>
+                <h2 className="text-2xl text-white font-bold">ADOPTA</h2>
+              </a>
+            </div>
+
+            <div className="hidden md:block">
+              <nav aria-label="Site Nav">
+                <ul className="flex items-center gap-6 text-sm">
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={"AdoptappCL" + item.href}
+                      className={classNames(
+                        item.current
+                          ? "bg-cyan-900 text-white"
+                          : "text-gray-300 hover:bg-cyan-700 hover:text-white",
+                        "px-3 py-2 rounded-md text-sm font-medium"
+                      )}
+                      aria-current={item.current ? "page" : undefined}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <div className="hidden sm:flex sm:gap-4">
+                <a
+                  className="rounded-md bg-cyan-700 px-5 py-2.5 text-sm font-medium text-white shadow"
+                  href="/"
+                >
+                  iniciar Sesión
+                </a>
+
+                <div className="hidden sm:flex">
+                  <a
+                    className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-cyan-700"
+                    href="/"
+                  >
+                    Registrarse
+                  </a>
+                </div>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
-                  <h2 className="text-2xl text-white font-bold">ADOPTA</h2>
-                </div>
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={"AdoptappCL" + item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-cyan-900 text-white"
-                            : "text-gray-300 hover:bg-cyan-700 hover:text-white",
-                          "px-3 py-2 rounded-md text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+
+              <div className="block md:hidden">
+                <button
+                  id="menu_hamburguesa"
+                  className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"
+                  onClick={toggleMenu}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
-
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-3">
+          <div id="seccion_menu" className="text-white hidden">
+            <ul className="grid ">
               {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as={Link}
-                  // href={item.href}
+                <Link
                   to={"AdoptappCL" + item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-cyan-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block px-3 py-2 rounded-md text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
+                  key={item.name}
+                  className="p-2 font-medium"
                 >
                   {item.name}
-                </Disclosure.Button>
+                </Link>
               ))}
-            </div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+
+              <p className="p-2 font-medium mt-5">Iniciar Sesión</p>
+              <p className="p-2 font-medium ">Registrarse</p>
+            </ul>
+          </div>
+        </div>
+      </header>
+    </>
   );
 };
