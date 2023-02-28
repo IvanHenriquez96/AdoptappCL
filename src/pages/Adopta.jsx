@@ -15,7 +15,7 @@ const Adopta = () => {
 
   if (isLoading) {
     return (
-      <div className="grid md:grid-cols-3">
+      <div className="grid md:grid-cols-3 fade-in">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />

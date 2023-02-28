@@ -5,7 +5,7 @@ import SeccionObjetivos from "../components/SeccionObjetivos";
 
 const Home = () => {
   return (
-    <div className=" text-cyan-800">
+    <div className=" text-cyan-800 fade-in">
       <Hero />
       <br />
       <br />
