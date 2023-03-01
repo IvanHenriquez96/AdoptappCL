@@ -32,6 +32,7 @@ const Adopta = () => {
             return (
               <CardMascota
                 key={mascota.id}
+                idMascota={mascota.id}
                 nombre={mascota.nombre}
                 imagen_perfil={mascota.imagen_perfil}
                 descripcion={mascota.descripcion}

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink } from "react-router-dom";
+import ItemNavbar from "./ItemNavbar";
 
 const navigation = [
   { name: "Inicio", href: "/", current: true },
@@ -41,19 +42,25 @@ export const Navbar = () => {
               <nav aria-label="Site Nav">
                 <ul className="flex items-center gap-6 text-sm">
                   {navigation.map((item) => (
-                    <Link
+                    <ItemNavbar
                       key={item.name}
-                      to={"AdoptappCL" + item.href}
-                      className={classNames(
-                        item.current
-                          ? "bg-cyan-900 text-white"
-                          : "text-gray-300 hover:bg-cyan-700 hover:text-white",
-                        "px-3 py-2 rounded-md text-sm font-medium"
-                      )}
-                      aria-current={item.current ? "page" : undefined}
-                    >
-                      {item.name}
-                    </Link>
+                      texto={item.name}
+                      url={"AdoptappCL" + item.href}
+                      current={item.current}
+                    />
+                    // <Link
+                    //   key={item.name}
+                    //   to={"AdoptappCL" + item.href}
+                    //   className={classNames(
+                    //     item.current
+                    //       ? "bg-cyan-900 text-white"
+                    //       : "text-gray-300 hover:bg-cyan-700 hover:text-white",
+                    //     "px-3 py-2 rounded-md text-sm font-medium"
+                    //   )}
+                    //   aria-current={item.current ? "page" : undefined}
+                    // >
+                    //   {item.name}
+                    // </Link>
                   ))}
                 </ul>
               </nav>
@@ -105,13 +112,12 @@ export const Navbar = () => {
           <div id="seccion_menu" className="text-white hidden">
             <ul className="grid ">
               {navigation.map((item) => (
-                <Link
-                  to={"AdoptappCL" + item.href}
+                <ItemNavbar
                   key={item.name}
-                  className="p-2 font-medium"
-                >
-                  {item.name}
-                </Link>
+                  texto={item.name}
+                  url={"AdoptappCL" + item.href}
+                  current={item.current}
+                />
               ))}
 
               <div className="my-3"></div>

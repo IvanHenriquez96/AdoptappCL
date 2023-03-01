@@ -1,6 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const CardMascota = ({ nombre, imagen_perfil, descripcion, likes }) => {
+const CardMascota = ({
+  idMascota,
+  nombre,
+  imagen_perfil,
+  descripcion,
+  likes,
+}) => {
   return (
     <div className="p-4 my-4 fade-in">
       <div className="w-full max-w-lg py-8 flex flex-row items-center justify-center mx-auto bg-[#FFFBFB] rounded-lg shadow-xl">
@@ -32,9 +39,13 @@ const CardMascota = ({ nombre, imagen_perfil, descripcion, likes }) => {
                 <strong className="text-cyan-900">100</strong> Following
               </li> */}
             </ul>
-            <button className="transition-colors bg-cyan-700 hover:bg-cyan-800 p-2 rounded-xl w-full text-white font-medium text-hover shadow-md shadow-cyan-900">
+            <Link
+              as={Link}
+              to={idMascota.toString()}
+              className="transition-colors text-center bg-cyan-700 hover:bg-cyan-800 p-2 rounded-xl w-full text-white font-medium text-hover shadow-md shadow-cyan-900"
+            >
               Ver Más
-            </button>
+            </Link>
 
             {/* <button className="flex mx-auto my-5 text-white font-bold bg-cyan-600 border-0 py-2 px-8 focus:outline-none hover:bg-cyan-700 rounded-2xl text-lg">
               ¡ADOPTA!
