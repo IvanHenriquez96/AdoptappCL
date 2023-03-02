@@ -19,7 +19,7 @@ const CardMascota = ({
           </div>
           <div className="w-full md:w-3/5 space-y-4 flex flex-col justify-center items-center">
             <div className="flex flex-col justify-center">
-              <h1 className="text-center md:text-left text-2xl font-bold text-cyan-800 my-2">
+              <h1 className="text-center md:text-left text-2xl font-bold text-sky-500 my-2">
                 {nombre}
               </h1>
               <p className="inline text-gray-700 font-normal leading-6 w-full text-base">
@@ -32,8 +32,8 @@ const CardMascota = ({
             </ul> */}
 
             <ul className="space-x-4 flex flex-row justify-center w-full mb-4">
-              <li className="text-sm text-cyan-800">
-                <strong className="text-cyan-900">{likes}</strong> Likes
+              <li className="text-sm text-sky-600">
+                <strong className="text-sky-600">{likes}</strong> Likes
               </li>
               {/* <li className="text-sm text-cyan-800">
                 <strong className="text-cyan-900">100</strong> Following
@@ -42,7 +42,7 @@ const CardMascota = ({
             <Link
               as={Link}
               to={idMascota.toString()}
-              className="transition-colors text-center bg-cyan-700 hover:bg-cyan-800 p-2 rounded-xl w-full text-white font-medium text-hover shadow-md shadow-cyan-900"
+              className="transition-colors text-center bg-yellow-500 hover:bg-yellow-600 p-2 rounded-xl w-full text-white font-medium text-hover shadow-md shadow-yellow-700"
             >
               Ver Más
             </Link>

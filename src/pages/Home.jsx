@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "../components/Hero";
 import SeccionBievenida from "../components/SeccionBievenida";
+import SeccionFooter from "../components/SeccionFooter";
 import SeccionObjetivos from "../components/SeccionObjetivos";
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
 
       <SeccionBievenida />
       <SeccionObjetivos />
+      <SeccionFooter />
     </div>
   );
 };

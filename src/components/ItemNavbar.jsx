@@ -7,8 +7,8 @@ const ItemNavbar = ({ texto, url, current }) => {
   return (
     <Link
       to={url}
-      className={`p-2 font-medium text-gray-300 hover:bg-cyan-700 hover:text-white ${
-        isCurrent && "bg-cyan-900 text-white rounded"
+      className={`p-2 font-medium text-white hover:bg-yellow-600 rounded hover:text-white ${
+        isCurrent && "bg-yellow-500 text-white rounded"
       }`}
     >
       {texto}

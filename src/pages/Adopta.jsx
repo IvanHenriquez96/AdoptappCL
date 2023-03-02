@@ -15,7 +15,7 @@ const Adopta = () => {
 
   if (isLoading) {
     return (
-      <div className="grid md:grid-cols-3 fade-in">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 px-32 fade-in">
         <CardSkeleton />
         <CardSkeleton />
         <CardSkeleton />
@@ -27,7 +27,7 @@ const Adopta = () => {
   } else {
     return (
       <div>
-        <div className="grid md:grid-cols-3">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3  md:px-32">
           {mascotas.map((mascota) => {
             return (
               <CardMascota

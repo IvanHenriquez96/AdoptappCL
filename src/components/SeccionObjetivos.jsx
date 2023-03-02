@@ -1,208 +1,52 @@
 import React from "react";
+import Objetivo from "./Objetivo";
 
 const SeccionObjetivos = () => {
   return (
-    <section className="container md:px-40 bg-cyan-900 text-white">
+    <section className=" px-4 md:px-32 bg-sky-500 text-white">
       {/* <div className="max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8"> */}
-      <div className="max-w-screen-xl p-4 py-20">
+      <div className="max-w-screen-xl py-20">
         <div className="max-w-xl">
           <h2 className="text-3xl font-bold sm:text-4xl">
-            What makes us special
+            Razones para adoptar
           </h2>
 
-          <p className="mt-4 text-gray-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            dolores iure fugit totam iste obcaecati. Consequatur ipsa quod ipsum
-            sequi culpa delectus, cumque id tenetur quibusdam, quos fuga minima.
+          <p className="mt-4 text-gray-50">
+            Adoptar un animal es una experiencia que puede cambiar tu vida para
+            siempre.
           </p>
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
-          <div className="flex items-start gap-4">
-            <span className="shrink-0 rounded-lg bg-gray-800 p-4">
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                ></path>
-              </svg>
-            </span>
+          <Objetivo
+            titulo="Salvas una vida"
+            desc="Adoptar una mascota de un refugio o de una organización de rescate significa darle una segunda oportunidad de tener un hogar amoroso y evitar que sea sacrificado."
+          />
 
-            <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
+          <Objetivo
+            titulo="Amor y gratitud"
+            desc="Las mascotas adoptadas a menudo muestran una gran gratitud y amor hacia sus nuevos dueños, ya que han pasado por situaciones difíciles antes de encontrar un hogar amoroso. Esta conexión especial puede fortalecer el vínculo entre el dueño y la mascota."
+          />
 
-              <p className="mt-1 text-sm text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
-              </p>
-            </div>
-          </div>
+          <Objetivo
+            titulo="Conciencia social"
+            desc="Al adoptar una mascota de un refugio o de una organización de rescate, estás ayudando a promover una cultura de adopción responsable y sensibilizando sobre la importancia de proteger y respetar a los animales."
+          />
 
-          <div className="flex items-start gap-4">
-            <span className="shrink-0 rounded-lg bg-gray-800 p-4">
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                ></path>
-              </svg>
-            </span>
+          <Objetivo
+            titulo="Mascotas de todas las edades"
+            desc="Las mascotas en los refugios vienen en todas las edades, tamaños y razas. Puedes encontrar desde cachorros hasta animales mayores, con diferentes personalidades y necesidades."
+          />
 
-            <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
+          <Objetivo
+            titulo="Mascotas entrenadas"
+            desc="Muchas veces las mascotas en los refugios ya están entrenadas en habilidades básicas de comportamiento, lo que puede ahorrar tiempo y esfuerzo en la formación."
+          />
 
-              <p className="mt-1 text-sm text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <span className="shrink-0 rounded-lg bg-gray-800 p-4">
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                ></path>
-              </svg>
-            </span>
-
-            <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
-
-              <p className="mt-1 text-sm text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <span className="shrink-0 rounded-lg bg-gray-800 p-4">
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                ></path>
-              </svg>
-            </span>
-
-            <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
-
-              <p className="mt-1 text-sm text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <span className="shrink-0 rounded-lg bg-gray-800 p-4">
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                ></path>
-              </svg>
-            </span>
-
-            <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
-
-              <p className="mt-1 text-sm text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <span className="shrink-0 rounded-lg bg-gray-800 p-4">
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                ></path>
-              </svg>
-            </span>
-
-            <div>
-              <h2 className="text-lg font-bold">Lorem, ipsum dolor.</h2>
-
-              <p className="mt-1 text-sm text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-                cumque tempore est ab possimus quisquam reiciendis tempora
-                animi! Quaerat, saepe?
-              </p>
-            </div>
-          </div>
+          <Objetivo
+            titulo="Costo"
+            desc="Adoptar una mascota generalmente es más económico que comprar una. Los refugios y organizaciones de rescate suelen tener tarifas de adopción que cubren los gastos de vacunas, esterilización, microchip y otros cuidados médicos necesarios."
+          />
         </div>
       </div>
     </section>

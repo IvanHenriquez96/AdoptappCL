@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink } from "react-router-dom";
 import ItemNavbar from "./ItemNavbar";
+import logo from "../assets/logo.png";
 
 const navigation = [
   { name: "Inicio", href: "/", current: true },
@@ -28,13 +29,14 @@ export const Navbar = () => {
 
   return (
     <>
-      <header aria-label="Site Header" className=" bg-cyan-800">
+      <header aria-label="Site Header" className=" bg-sky-600">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 ">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
               <Link to={"AdoptappCL/"} className="block text-teal-600" href="/">
                 <span className="sr-only">Home</span>
-                <h2 className="text-2xl text-white font-bold">ADOPTA</h2>
+                {/* <h2 className="text-2xl text-white font-bold">ADOPTA</h2> */}
+                <img src={logo} className="w-32" alt="" />
               </Link>
             </div>
 
@@ -69,7 +71,7 @@ export const Navbar = () => {
             <div className="flex items-center gap-4">
               <div className="hidden sm:flex sm:gap-4">
                 <Link
-                  className="rounded-md bg-cyan-700 px-5 py-2.5 text-sm font-medium text-white shadow "
+                  className="rounded-md bg-yellow-500 hover:bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white shadow "
                   to={"AdoptappCL/login"}
                 >
                   iniciar Sesión
@@ -77,7 +79,7 @@ export const Navbar = () => {
 
                 <div className="hidden sm:flex">
                   <Link
-                    className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-cyan-700"
+                    className="rounded-md bg-yellow-500 px-5 py-2.5 text-sm font-medium text-gray-50 hover:bg-yellow-600"
                     to={"AdoptappCL/registrarse"}
                   >
                     Registrarse
@@ -88,7 +90,7 @@ export const Navbar = () => {
               <div className="block md:hidden">
                 <button
                   id="menu_hamburguesa"
-                  className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"
+                  className="rounded bg-yellow-500 p-2 text-gray-50 transition hover:text-gray-50/75"
                   onClick={toggleMenu}
                 >
                   <svg
