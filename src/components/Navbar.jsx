@@ -7,7 +7,9 @@ import logo from "../assets/logo.png";
 
 const navigation = [
   { name: "Inicio", href: "/", current: true },
-  { name: "Adopta", href: "/adopta", current: false },
+  { name: "Mascotas", href: "/adopta", current: false },
+  { name: "Fundaciones", href: "/fundaciones", current: false },
+  { name: "Recursos", href: "/fundaciones", current: false },
   { name: "Quiénes somos", href: "/quienessomos", current: false },
 ];
 
@@ -50,19 +52,6 @@ export const Navbar = () => {
                       url={"AdoptappCL" + item.href}
                       current={item.current}
                     />
-                    // <Link
-                    //   key={item.name}
-                    //   to={"AdoptappCL" + item.href}
-                    //   className={classNames(
-                    //     item.current
-                    //       ? "bg-cyan-900 text-white"
-                    //       : "text-gray-300 hover:bg-cyan-700 hover:text-white",
-                    //     "px-3 py-2 rounded-md text-sm font-medium"
-                    //   )}
-                    //   aria-current={item.current ? "page" : undefined}
-                    // >
-                    //   {item.name}
-                    // </Link>
                   ))}
                 </ul>
               </nav>
@@ -111,7 +100,7 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-          <div id="seccion_menu" className="text-white hidden">
+          <div id="seccion_menu" className="text-white hidden py-5">
             <ul className="grid ">
               {navigation.map((item) => (
                 <ItemNavbar
