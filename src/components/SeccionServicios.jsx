@@ -3,7 +3,7 @@ import CardServicio from "./CardServicio";
 
 const SeccionServicios = () => {
   return (
-    <section className="text-gray-600 body-font container px-4 md:mx-0 md:px-32 my-20">
+    <section className=" text-gray-600 body-font container  px-4 md:mx-auto md:px-32 ">
       <div className=" px-5 md:px-0 py-24 mx-auto">
         <div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
           <h1 className=" text-4xl font-bold title-font mb-2 text-sky-600">

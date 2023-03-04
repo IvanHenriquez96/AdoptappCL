@@ -9,7 +9,7 @@ const navigation = [
   { name: "Inicio", href: "/", current: true },
   { name: "Mascotas", href: "/adopta", current: false },
   { name: "Fundaciones", href: "/fundaciones", current: false },
-  { name: "Recursos", href: "/fundaciones", current: false },
+  { name: "Recursos", href: "/recursos", current: false },
   { name: "Quiénes somos", href: "/quienessomos", current: false },
 ];
 
@@ -76,7 +76,7 @@ export const Navbar = () => {
                 </div>
               </div>
 
-              <div className="block md:hidden">
+              <div className="block md:hidden ">
                 <button
                   id="menu_hamburguesa"
                   className="rounded bg-yellow-500 p-2 text-gray-50 transition hover:text-gray-50/75"
