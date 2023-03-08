@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Mascotas from "../Controllers/MascotasController";
+// import Mascotas from "../Controllers/MascotasController";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
+import app from "../firebaseConfig";
+
+const db = getFirestore(app);
+
+const mascotasRef = collection(db, "mascotas");
 
 const InfoMascotaPage = () => {
   let { idMascota } = useParams();
@@ -12,11 +24,12 @@ const InfoMascotaPage = () => {
     obtenerDatosMascota();
   }, []);
 
-  const obtenerDatosMascota = () => {
-    const mascota = Mascotas.find((mascota) => mascota.id == idMascota);
-    setMascota(mascota);
-    setIsLoading(false);
-    console.log(mascota);
+  const obtenerDatosMascota = async () => {
+    const q = query(mascotasRef, where("id", "==", parseInt(idMascota)));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      setMascota(doc.data());
+    });
   };
 
   return (
