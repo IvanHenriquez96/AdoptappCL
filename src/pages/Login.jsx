@@ -26,7 +26,7 @@ const Login = () => {
     <>
       <form onSubmit={verificarLogin}>
         <section className="text-gray-600 body-font  fade-in flex justify-center items-center">
-          <div className=" bg-gray-100 rounded-lg p-8 md:w-1/2 mt-20">
+          <div className=" bg-gray-100 rounded-lg p-8 md:w-1/2 my-24 mx-2">
             <h2 className="text-sky-600 text-2xl font-medium title-font mb-5">
               Iniciar Sesión
             </h2>

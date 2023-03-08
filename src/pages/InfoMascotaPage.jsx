@@ -40,11 +40,11 @@ const InfoMascotaPage = () => {
             <h2 className="text-sm title-font text-gray-600 tracking-widest">
               Fundación: {mascota.fundacion}
             </h2>
-            <h1 className="text-cyan-800 text-3xl title-font font-medium mb-4">
+            <h1 className="text-sky-600 text-3xl title-font font-medium mb-4 mt-2">
               {mascota.nombre}
             </h1>
             <div className="flex mb-4">
-              <a className="flex-grow text-cyan-700 border-b-2 border-cyan-700 py-2 text-lg px-1">
+              <a className="flex-grow text-sky-700 border-b-2 border-sky-600 py-2 text-lg px-1">
                 Descripción
               </a>
               {/* <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
@@ -73,10 +73,10 @@ const InfoMascotaPage = () => {
               {/* <span className="title-font font-medium text-2xl text-gray-900">
                 $58.00
               </span> */}
-              <button className="flex ml-auto text-white bg-cyan-700 font-medium border-0 py-2 px-6 focus:outline-none hover:bg-cyan-600 rounded">
+              <button className="flex ml-auto text-white bg-sky-600 font-medium border-0 py-2 px-6 focus:outline-none hover:bg-sky-500 rounded-2xl">
                 Adoptar
               </button>
-              <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+              <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:text-red-300">
                 <svg
                   fill="currentColor"
                   strokeLinecap="round"
@@ -98,7 +98,7 @@ const InfoMascotaPage = () => {
 
           <img
             alt="ecommerce"
-            className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+            className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded-xl"
             src={mascota.imagen_perfil}
           />
         </div>

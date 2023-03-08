@@ -1,113 +1,116 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import SeccionFooter from "../components/SeccionFooter";
 
 const Registro = () => {
+  const [datosForm, setDatosForm] = useState({
+    nombre: "",
+    email: "",
+    password: "",
+    repeat_password: "",
+  });
+
+  const verificarRegistro = (e) => {
+    e.preventDefault();
+    console.log(`Verifica registro ${datosForm.email} ${datosForm.password}`);
+  };
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    console.log(e.target.name);
+    setDatosForm({ ...datosForm, [e.target.name]: e.target.value });
+  };
+
   return (
-    <section className="relative flex flex-wrap lg:h-screen lg:items-center fade-in">
-      <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-lg text-center">
-          <h1 className="text-2xl font-bold sm:text-3xl">Get started today!</h1>
+    <>
+      <form onSubmit={verificarRegistro}>
+        <section className="text-gray-600 body-font  fade-in flex justify-center items-center">
+          <div className=" bg-gray-100 rounded-lg p-8 md:w-1/2 my-24 mx-4">
+            <h2 className="text-sky-600 text-2xl font-medium title-font mb-5">
+              Crea tu cuenta
+            </h2>
 
-          <p className="mt-4 text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-            nulla eaque error neque ipsa culpa autem, at itaque nostrum!
-          </p>
-        </div>
+            <div className="relative mb-4">
+              <label
+                htmlFor="nombre_completo"
+                className="leading-7 text-sm text-sky-600"
+              >
+                Nombre Completo
+              </label>
+              <input
+                type="text"
+                value={datosForm.nombre}
+                onChange={handleChange}
+                name="nombre_completo"
+                className="w-full bg-white rounded border border-gray-300 focus:border-cyan-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
 
-        <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
-          <div>
-            <label htmlFor="email" className="sr-only">
-              Email
-            </label>
-
-            <div className="relative">
+            <div className="relative mb-4">
+              <label htmlFor="email" className="leading-7 text-sm text-sky-600">
+                Email
+              </label>
               <input
                 type="email"
-                className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-                placeholder="Enter email"
+                value={datosForm.email}
+                onChange={handleChange}
+                name="email"
+                className="w-full bg-white rounded border border-gray-300 focus:border-cyan-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
-
-              <span className="absolute inset-y-0 right-0 grid place-content-center px-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                  />
-                </svg>
-              </span>
             </div>
-          </div>
-
-          <div>
-            <label htmlFor="password" className="sr-only">
-              Password
-            </label>
-
-            <div className="relative">
+            <div className="relative mb-4">
+              <label
+                htmlFor="password"
+                className="leading-7 text-sm text-cyan-600"
+              >
+                Contraseña
+              </label>
               <input
                 type="password"
-                className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-                placeholder="Enter password"
+                value={datosForm.password}
+                onChange={handleChange}
+                name="password"
+                className="w-full bg-white rounded border border-gray-300 focus:border-cyan-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
-
-              <span className="absolute inset-y-0 right-0 grid place-content-center px-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-              </span>
             </div>
-          </div>
 
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-500">
-              No account?
-              <a className="underline" href="">
-                Sign up
-              </a>
-            </p>
+            <div className="relative mb-4">
+              <label
+                htmlFor="repeat_password"
+                className="leading-7 text-sm text-cyan-600"
+              >
+                Repetir Contraseña
+              </label>
+              <input
+                type="password"
+                value={datosForm.repeat_password}
+                onChange={handleChange}
+                name="repeat_password"
+                className="w-full bg-white rounded border border-gray-300 focus:border-cyan-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
 
-            <button
-              type="submit"
-              className="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
-            >
-              Sign in
+            <div className="bg-red-300 text-white p-2 rounded mb-4 hidden">
+              <ul>
+                <li>* Error1</li>
+                <li>* Error2</li>
+              </ul>
+            </div>
+            <button className="text-white bg-sky-700 border-0 py-2 px-8 focus:outline-none hover:bg-sky-800 rounded text-lg font-medium">
+              Aceptar
             </button>
+            <p className="text-xs text-gray-500 mt-3">
+              Ya tienes una cuenta?
+              <span className="cursor-pointer text-cyan-700">
+                <Link to={"/AdoptappCL/login"}> Inicia Sesión!.</Link>
+              </span>
+            </p>
           </div>
-        </form>
-      </div>
+        </section>
+      </form>
 
-      <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
-        <img
-          alt="Welcome"
-          src="https://images.unsplash.com/photo-1630450202872-e0829c9d6172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      </div>
-    </section>
+      <SeccionFooter />
+    </>
   );
 };
 
