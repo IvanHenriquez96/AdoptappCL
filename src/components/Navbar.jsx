@@ -31,7 +31,10 @@ export const Navbar = () => {
 
   return (
     <>
-      <header aria-label="Site Header" className=" bg-sky-600">
+      <header
+        aria-label="Site Header"
+        className=" bg-sky-600 fixed top-0 left-0 right-0 z-10"
+      >
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 ">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">

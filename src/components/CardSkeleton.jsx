@@ -2,7 +2,7 @@ import React from "react";
 
 const CardSkeleton = () => {
   return (
-    <div className="p-4 my-4">
+    <div className="p-4 my-4 mt-10">
       <div className="w-full max-w-lg py-8 flex flex-row items-center justify-center mx-auto bg-gray-200 rounded-lg shadow-xl">
         <div className="flex flex-col md:flex-row w-3/4 md:w-5/6 space-x-0 md:space-x-8">
           <div className="w-full md:w-2/5 flex flex-col items-center justify-center">

@@ -1,19 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SeccionFooter from "../components/SeccionFooter";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+const auth = getAuth();
 
 const Login = () => {
-  // const [inputEmail, setInputEmail] = useState("");
-  // const [inputPassword, setInputPassword] = useState("");
-
   const [datosForm, setDatosForm] = useState({
     email: "",
     password: "",
   });
 
+  const [error, setError] = useState(null);
+
   const verificarLogin = (e) => {
     e.preventDefault();
-    console.log(`Verifica login ${datosForm.email} ${datosForm.password}`);
+    // console.log(`Verifica login ${datosForm.email} ${datosForm.password}`);
+    setError(null);
+
+    signInWithEmailAndPassword(auth, datosForm.email, datosForm.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // console.log("logiueado", user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("no logueado, error", errorMessage);
+
+        setError(errorMessage);
+      });
   };
 
   const handleChange = (e) => {
@@ -25,7 +43,7 @@ const Login = () => {
   return (
     <>
       <form onSubmit={verificarLogin}>
-        <section className="text-gray-600 body-font  fade-in flex justify-center items-center">
+        <section className="text-gray-600 body-font  fade-in flex justify-center items-center mt-10">
           <div className=" bg-gray-100 rounded-lg p-8 md:w-1/2 my-24 mx-2">
             <h2 className="text-sky-600 text-2xl font-medium title-font mb-5">
               Iniciar Sesión
@@ -59,12 +77,14 @@ const Login = () => {
               />
             </div>
 
-            <div className="bg-red-300 text-white p-2 rounded mb-4 hidden">
-              <ul>
-                <li>* Error1</li>
-                <li>* Error2</li>
-              </ul>
-            </div>
+            {error && (
+              <div className="bg-red-300 text-white p-2 rounded mb-4">
+                <ul>
+                  <li>{error}</li>
+                </ul>
+              </div>
+            )}
+
             <button className="text-white bg-sky-700 border-0 py-2 px-8 focus:outline-none hover:bg-sky-800 rounded text-lg font-medium">
               Aceptar
             </button>
