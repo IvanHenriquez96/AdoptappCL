@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App relative">
       <Navbar />
+      <div className="my-5">_</div>
       <AppRoutes />
     </div>
   );

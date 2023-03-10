@@ -103,7 +103,10 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-          <div id="seccion_menu" className="text-white hidden py-5">
+          <div
+            id="seccion_menu"
+            className="text-white hidden py-5 scale-in-ver-top"
+          >
             <ul className="grid ">
               {navigation.map((item) => (
                 <ItemNavbar

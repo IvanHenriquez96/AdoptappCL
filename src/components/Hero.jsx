@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <>
-      <section className="overflow-hidden bg-[url(https://www.cdc.gov/healthypets/images/covid/dog-and-cat.jpg?_=46111)] bg-cover bg-center bg-no-repeat mt-16">
+      <section className="overflow-hidden bg-[url(https://www.cdc.gov/healthypets/images/covid/dog-and-cat.jpg?_=46111)] bg-cover bg-center bg-no-repeat">
         <div className="bg-black/60 p-8 md:px-32 lg:py-24">
           <div className="text-center sm:text-left">
             <h2 className="text-2xl font-bold text-white text-center sm:text-3xl md:text-5xl">
