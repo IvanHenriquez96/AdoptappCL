@@ -35,7 +35,7 @@ export const Navbar = () => {
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 ">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
-              <Link to={"AdoptappCL/"} className="block text-teal-600" href="/">
+              <Link to={"/"} className="block text-teal-600" href="/">
                 <span className="sr-only">Home</span>
                 {/* <h2 className="text-2xl text-white font-bold">ADOPTA</h2> */}
                 <img src={logo} className="w-32" alt="" />
@@ -49,7 +49,7 @@ export const Navbar = () => {
                     <ItemNavbar
                       key={item.name}
                       texto={item.name}
-                      url={"AdoptappCL" + item.href}
+                      url={item.href}
                       current={item.current}
                     />
                   ))}
@@ -61,7 +61,7 @@ export const Navbar = () => {
               <div className="hidden sm:flex sm:gap-4">
                 <Link
                   className="rounded-md bg-yellow-500 hover:bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white shadow "
-                  to={"AdoptappCL/login"}
+                  to={"login"}
                 >
                   iniciar Sesión
                 </Link>
@@ -69,7 +69,7 @@ export const Navbar = () => {
                 <div className="hidden sm:flex">
                   <Link
                     className="rounded-md bg-yellow-500 px-5 py-2.5 text-sm font-medium text-gray-50 hover:bg-yellow-600"
-                    to={"AdoptappCL/registrarse"}
+                    to={"registrarse"}
                   >
                     Registrarse
                   </Link>
@@ -106,7 +106,7 @@ export const Navbar = () => {
                 <ItemNavbar
                   key={item.name}
                   texto={item.name}
-                  url={"AdoptappCL" + item.href}
+                  url={item.href}
                   current={item.current}
                 />
               ))}
@@ -115,7 +115,7 @@ export const Navbar = () => {
 
               {navigation_auth.map((item) => (
                 <Link
-                  to={"AdoptappCL" + item.href}
+                  to={item.href}
                   key={item.name}
                   className="p-2 font-medium"
                 >

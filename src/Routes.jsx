@@ -11,17 +11,14 @@ import FundacionesPage from "./pages/FundacionesPage";
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="AdoptappCL/" element={<Home />} />
-      <Route path="AdoptappCL/adopta" element={<Adopta />} />
-      <Route
-        path="AdoptappCL/adopta/:idMascota"
-        element={<InfoMascotaPage />}
-      />
-      <Route path="AdoptappCL/fundaciones" element={<FundacionesPage />} />
-      <Route path="AdoptappCL/recursos" element={<RecursosPage />} />
-      <Route path="AdoptappCL/quienessomos" element={<QuienesSomos />} />
-      <Route path="AdoptappCL/login" element={<Login />} />
-      <Route path="AdoptappCL/Registrarse" element={<Registro />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/adopta" element={<Adopta />} />
+      <Route path="/adopta/:idMascota" element={<InfoMascotaPage />} />
+      <Route path="/fundaciones" element={<FundacionesPage />} />
+      <Route path="/recursos" element={<RecursosPage />} />
+      <Route path="/quienessomos" element={<QuienesSomos />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/Registrarse" element={<Registro />} />
     </Routes>
   );
 }
