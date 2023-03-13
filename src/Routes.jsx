@@ -7,6 +7,8 @@ import Registro from "./pages/Registro";
 import InfoMascotaPage from "./pages/InfoMascotaPage";
 import RecursosPage from "./pages/RecursosPage";
 import FundacionesPage from "./pages/FundacionesPage";
+import MiPerfil from "./pages/MiPerfil";
+import Logout from "./pages/Logout";
 
 export default function AppRoutes() {
   return (
@@ -19,6 +21,8 @@ export default function AppRoutes() {
       <Route path="/quienessomos" element={<QuienesSomos />} />
       <Route path="/login" element={<Login />} />
       <Route path="/Registrarse" element={<Registro />} />
+      <Route path="/perfil" element={<MiPerfil />} />
+      <Route path="/logout" element={<Logout />} />
     </Routes>
   );
 }

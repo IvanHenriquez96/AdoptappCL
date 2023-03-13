@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink } from "react-router-dom";
 import ItemNavbar from "./ItemNavbar";
 import logo from "../assets/logo.png";
+import { UserContext } from "../App";
 
 const navigation = [
   { name: "Inicio", href: "/", current: true },
@@ -13,9 +14,14 @@ const navigation = [
   { name: "Quiénes somos", href: "/quienessomos", current: false },
 ];
 
-const navigation_auth = [
+const navigation_guest = [
   { name: "Iniciar Sesión", href: "/login", current: true },
   { name: "Registrarse", href: "/registrarse", current: false },
+];
+
+const navigation_auth = [
+  { name: "Mi Perfil", href: "/perfil", current: true },
+  { name: "Cerrar Sesión", href: "/logout", current: false },
 ];
 
 function classNames(...classes) {
@@ -23,6 +29,8 @@ function classNames(...classes) {
 }
 
 export const Navbar = () => {
+  const { user } = useContext(UserContext);
+
   const toggleMenu = (e) => {
     const seccion_menu = document.querySelector("#seccion_menu");
     // console.log("test");
@@ -61,23 +69,43 @@ export const Navbar = () => {
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="hidden sm:flex sm:gap-4">
-                <Link
-                  className="rounded-md bg-yellow-500 hover:bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white shadow "
-                  to={"login"}
-                >
-                  iniciar Sesión
-                </Link>
-
-                <div className="hidden sm:flex">
+              {user ? (
+                <div className="hidden sm:flex sm:gap-4">
                   <Link
-                    className="rounded-md bg-yellow-500 px-5 py-2.5 text-sm font-medium text-gray-50 hover:bg-yellow-600"
-                    to={"registrarse"}
+                    className="rounded-md bg-yellow-500 hover:bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white shadow "
+                    to={"perfil"}
                   >
-                    Registrarse
+                    Mi Perfil
                   </Link>
+
+                  <div className="hidden sm:flex">
+                    <Link
+                      className="rounded-md bg-yellow-500 px-5 py-2.5 text-sm font-medium text-gray-50 hover:bg-yellow-600"
+                      to={"logout"}
+                    >
+                      Cerrar Sesión
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="hidden sm:flex sm:gap-4">
+                  <Link
+                    className="rounded-md bg-yellow-500 hover:bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white shadow "
+                    to={"login"}
+                  >
+                    iniciar Sesión
+                  </Link>
+
+                  <div className="hidden sm:flex">
+                    <Link
+                      className="rounded-md bg-yellow-500 px-5 py-2.5 text-sm font-medium text-gray-50 hover:bg-yellow-600"
+                      to={"registrarse"}
+                    >
+                      Registrarse
+                    </Link>
+                  </div>
+                </div>
+              )}
 
               <div className="block md:hidden ">
                 <button
@@ -119,15 +147,25 @@ export const Navbar = () => {
 
               <div className="my-3"></div>
 
-              {navigation_auth.map((item) => (
-                <Link
-                  to={item.href}
-                  key={item.name}
-                  className="p-2 font-medium"
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {user
+                ? navigation_auth.map((item) => (
+                    <Link
+                      to={item.href}
+                      key={item.name}
+                      className="p-2 font-medium"
+                    >
+                      {item.name}
+                    </Link>
+                  ))
+                : navigation_guest.map((item) => (
+                    <Link
+                      to={item.href}
+                      key={item.name}
+                      className="p-2 font-medium"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
             </ul>
           </div>
         </div>

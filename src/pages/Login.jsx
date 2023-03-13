@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import SeccionFooter from "../components/SeccionFooter";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { UserContext } from "../App";
 
 const auth = getAuth();
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const { user, setUser } = useContext(UserContext);
+
   const [datosForm, setDatosForm] = useState({
     email: "",
     password: "",
@@ -22,8 +27,12 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // console.log("logiueado", user);
-        // ...
+
+        //setea el usuario en el context
+        setUser(user);
+        console.log("logueado", user);
+        //redirige al inicio
+        navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
