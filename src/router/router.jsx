@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import NotFound from "../components/NotFound";
+import LayoutAdmin from "../Layouts/LayoutAdmin";
 import LayoutPublic from "../Layouts/LayoutPublic";
 import Adopta from "../pages/Adopta";
+import DashboardPage from "../pages/DashboardPage";
 import FundacionesPage from "../pages/FundacionesPage";
 import Home from "../pages/Home";
 import InfoMascotaPage from "../pages/InfoMascotaPage";
@@ -19,9 +21,9 @@ export const router = createBrowserRouter([
     element: <LayoutPublic />,
     errorElement: <NotFound />,
     children: [
-      { path: "/", element: <Home />, errorElement: <NotFound /> },
+      { index: true, element: <Home /> },
       { path: "/adopta", element: <Adopta /> },
-      { path: "/adopta/idMascota", element: <InfoMascotaPage /> },
+      { path: "/adopta/:idMascota", element: <InfoMascotaPage /> },
       { path: "/fundaciones", element: <FundacionesPage /> },
       { path: "/recursos", element: <RecursosPage /> },
       { path: "/quienessomos", element: <QuienesSomos /> },
@@ -30,5 +32,11 @@ export const router = createBrowserRouter([
       { path: "/perfil", element: <MiPerfil /> },
       { path: "/logout", element: <Logout /> },
     ],
+  },
+
+  {
+    path: "/dashboard",
+    element: <LayoutAdmin />,
+    children: [{ index: true, element: <DashboardPage /> }],
   },
 ]);

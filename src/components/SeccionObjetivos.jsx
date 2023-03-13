@@ -21,31 +21,37 @@ const SeccionObjetivos = () => {
           <Objetivo
             titulo="Salvas una vida"
             desc="Adoptar una mascota de un refugio o de una organización de rescate significa darle una segunda oportunidad de tener un hogar amoroso y evitar que sea sacrificado."
+            numero={1}
           />
 
           <Objetivo
             titulo="Amor y gratitud"
             desc="Las mascotas adoptadas a menudo muestran una gran gratitud y amor hacia sus nuevos dueños, ya que han pasado por situaciones difíciles antes de encontrar un hogar amoroso. Esta conexión especial puede fortalecer el vínculo entre el dueño y la mascota."
+            numero={2}
           />
 
           <Objetivo
             titulo="Conciencia social"
             desc="Al adoptar una mascota de un refugio o de una organización de rescate, estás ayudando a promover una cultura de adopción responsable y sensibilizando sobre la importancia de proteger y respetar a los animales."
+            numero={3}
           />
 
           <Objetivo
             titulo="Mascotas de todas las edades"
             desc="Las mascotas en los refugios vienen en todas las edades, tamaños y razas. Puedes encontrar desde cachorros hasta animales mayores, con diferentes personalidades y necesidades."
+            numero={4}
           />
 
           <Objetivo
             titulo="Mascotas entrenadas"
             desc="Muchas veces las mascotas en los refugios ya están entrenadas en habilidades básicas de comportamiento, lo que puede ahorrar tiempo y esfuerzo en la formación."
+            numero={5}
           />
 
           <Objetivo
             titulo="Costo"
             desc="Adoptar una mascota generalmente es más económico que comprar una. Los refugios y organizaciones de rescate suelen tener tarifas de adopción que cubren los gastos de vacunas, esterilización, microchip y otros cuidados médicos necesarios."
+            numero={6}
           />
         </div>
       </div>
