@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import SeccionFooter from "../components/SeccionFooter";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth();
@@ -133,8 +132,6 @@ const Registro = () => {
           </div>
         </section>
       </form>
-
-      <SeccionFooter />
     </>
   );
 };

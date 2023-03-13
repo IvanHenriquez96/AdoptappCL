@@ -2,7 +2,6 @@ import React from "react";
 import Hero from "../components/Hero";
 import SeccionBievenida from "../components/SeccionBievenida";
 import SeccionCallToAction from "../components/SeccionCallToAction";
-import SeccionFooter from "../components/SeccionFooter";
 import SeccionObjetivos from "../components/SeccionObjetivos";
 import SeccionServicios from "../components/SeccionServicios";
 
@@ -18,7 +17,6 @@ const Home = () => {
       <SeccionObjetivos />
       <SeccionServicios />
       <SeccionCallToAction />
-      <SeccionFooter />
     </div>
   );
 };

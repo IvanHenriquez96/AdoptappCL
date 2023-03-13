@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, redirect, useNavigate } from "react-router-dom";
-import SeccionFooter from "../components/SeccionFooter";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { UserContext } from "../App";
+import { UserContext } from "../Layouts/LayoutPublic";
 
 const auth = getAuth();
 
@@ -106,8 +105,6 @@ const Login = () => {
           </div>
         </section>
       </form>
-
-      <SeccionFooter />
     </>
   );
 };

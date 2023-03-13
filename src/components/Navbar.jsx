@@ -4,7 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, NavLink } from "react-router-dom";
 import ItemNavbar from "./ItemNavbar";
 import logo from "../assets/logo.png";
-import { UserContext } from "../App";
+import { UserContext } from "../Layouts/LayoutPublic";
 
 const navigation = [
   { name: "Inicio", href: "/", current: true },
