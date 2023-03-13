@@ -26,6 +26,9 @@ const Login = () => {
       .then((userCredential) => {
         const usuarioActivo = userCredential.user; // Signed in, setea el usuario en el context
         setUser(usuarioActivo);
+
+        //sube los datos del usuario a localStorage
+        localStorage.setItem("userData", JSON.stringify(usuarioActivo));
       })
       .then(() => {
         navigate("/");
