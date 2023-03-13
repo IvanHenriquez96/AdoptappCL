@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import NotFound from "../components/NotFound";
 import LayoutAdmin from "../Layouts/LayoutAdmin";
-import LayoutPublic from "../Layouts/LayoutPublic";
+import LayoutPublic from "../Layouts/LayoutRoot";
 import Adopta from "../pages/Adopta";
 import DashboardPage from "../pages/DashboardPage";
 import FundacionesPage from "../pages/FundacionesPage";
@@ -31,12 +31,12 @@ export const router = createBrowserRouter([
       { path: "/Registrarse", element: <Registro /> },
       { path: "/perfil", element: <MiPerfil /> },
       { path: "/logout", element: <Logout /> },
-    ],
-  },
 
-  {
-    path: "/dashboard",
-    element: <LayoutAdmin />,
-    children: [{ index: true, element: <DashboardPage /> }],
+      {
+        path: "/dashboard",
+        element: <LayoutAdmin />,
+        children: [{ index: true, element: <DashboardPage /> }],
+      },
+    ],
   },
 ]);

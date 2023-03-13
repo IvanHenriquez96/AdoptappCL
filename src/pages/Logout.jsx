@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../Layouts/LayoutPublic";
+import { useUserContext } from "../context/UserContext";
 
 const Logout = () => {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useUserContext();
+
   const navigate = useNavigate();
 
   useEffect(() => {

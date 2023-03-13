@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { UserContext } from "../Layouts/LayoutPublic";
+import { useUserContext } from "../context/UserContext";
 
 const MiPerfil = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useUserContext();
   return <div>{user.email}</div>;
 };
 

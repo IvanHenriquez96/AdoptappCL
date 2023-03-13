@@ -1,10 +1,8 @@
-import React, { Fragment, useContext } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import ItemNavbar from "./ItemNavbar";
 import logo from "../assets/logo.png";
-import { UserContext } from "../Layouts/LayoutPublic";
+import { useUserContext } from "../context/UserContext";
 
 const navigation = [
   { name: "Inicio", href: "/", current: true },
@@ -20,7 +18,8 @@ const navigation_guest = [
 ];
 
 const navigation_auth = [
-  { name: "Mi Perfil", href: "/perfil", current: true },
+  // { name: "Mi Perfil", href: "/perfil", current: true },
+  { name: "Mi Perfil", href: "/dashboard", current: true },
   { name: "Cerrar Sesión", href: "/logout", current: false },
 ];
 
@@ -29,7 +28,8 @@ function classNames(...classes) {
 }
 
 export const Navbar = () => {
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
+  const { user, setUser } = useUserContext();
 
   const toggleMenu = (e) => {
     const seccion_menu = document.querySelector("#seccion_menu");
@@ -131,45 +131,53 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-          <div
-            id="seccion_menu"
-            className="text-white hidden py-5 scale-in-ver-top"
-          >
-            <ul className="grid ">
-              {navigation.map((item) => (
-                <ItemNavbar
-                  key={item.name}
-                  texto={item.name}
-                  url={item.href}
-                  current={item.current}
-                />
-              ))}
-
-              <div className="my-3"></div>
-
-              {user
-                ? navigation_auth.map((item) => (
-                    <Link
-                      to={item.href}
-                      key={item.name}
-                      className="p-2 font-medium"
-                    >
-                      {item.name}
-                    </Link>
-                  ))
-                : navigation_guest.map((item) => (
-                    <Link
-                      to={item.href}
-                      key={item.name}
-                      className="p-2 font-medium"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-            </ul>
-          </div>
         </div>
       </header>
+      <div
+        id="seccion_menu"
+        className="bg-sky-500 bg-opacity-90 fixed top-16 left-100 right-0 z-10 h-screen w-3/4 scale-in-hor-right text-white hidden py-5"
+      >
+        <ul className="grid ">
+          {navigation.map((item) => (
+            <ItemNavbar
+              key={item.name}
+              texto={item.name}
+              url={item.href}
+              current={item.current}
+            />
+          ))}
+
+          <div className="my-3"></div>
+
+          {user
+            ? navigation_auth.map((item) => (
+                <NavLink
+                  to={item.href}
+                  key={item.name}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "p-2 font-medium text-white hover:bg-yellow-500 rounded bg-yellow-500"
+                      : "p-2 font-medium text-white hover:bg-yellow-500 rounded"
+                  }
+                >
+                  {item.name}
+                </NavLink>
+              ))
+            : navigation_guest.map((item) => (
+                <NavLink
+                  to={item.href}
+                  key={item.name}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "p-2 font-medium text-white hover:bg-yellow-500 rounded bg-yellow-500"
+                      : "p-2 font-medium text-white hover:bg-yellow-500 rounded"
+                  }
+                >
+                  {item.name}
+                </NavLink>
+              ))}
+        </ul>
+      </div>
     </>
   );
 };

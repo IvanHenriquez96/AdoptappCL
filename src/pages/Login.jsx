@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { UserContext } from "../Layouts/LayoutPublic";
+import { useUserContext } from "../context/UserContext";
 
 const auth = getAuth();
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useUserContext();
 
   const [datosForm, setDatosForm] = useState({
     email: "",
@@ -24,13 +24,10 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, datosForm.email, datosForm.password)
       .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-
-        //setea el usuario en el context
-        setUser(user);
-        console.log("logueado", user);
-        //redirige al inicio
+        const usuarioActivo = userCredential.user; // Signed in, setea el usuario en el context
+        setUser(usuarioActivo);
+      })
+      .then(() => {
         navigate("/");
       })
       .catch((error) => {

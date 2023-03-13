@@ -2,7 +2,7 @@ import React from "react";
 
 const FundacionesPage = () => {
   return (
-    <div className="container p-4 mx-auto text-gray-600">
+    <div className="container px-4 md:px-32 my-20 mx-auto text-gray-600">
       <h2 className=" text-3xl md:text-4xl  text-sky-600 font-bold text-center md:text-left my-10">
         ¡Gracias por esta gran labor!
       </h2>
@@ -23,25 +23,29 @@ const FundacionesPage = () => {
         vivir felices.
       </p>
 
-      <div className="grid md:grid-cols-2 mt-10 items-center md:p-10 p-4 mx-4 border rounded-lg">
-        <img
-          src="http://pawspetfoundation.org/wp-content/uploads/2012/05/paws_logo.png"
-          className="w-3/5 mx-auto rounded"
-          alt=""
-        />
-        <div className="mx-auto bg-yellow-500 px-6 py-4 rounded-full text-white font-bold shadow-xl">
-          DONAR
-        </div>
-      </div>
+      <div className="grid md:grid-cols-2 gap-4 mt-10  p-4 text-center">
+        <div className="border rounded-lg p-4">
+          <img
+            src="https://bfpa.org/wp-content/uploads/2020/04/logo_2019_inverse.png"
+            className="w-1/3 mx-auto rounded"
+            alt=""
+          />
 
-      <div className="grid md:grid-cols-2 mt-10 items-center md:p-10 p-4 mx-4 border rounded-lg">
-        <img
-          src="https://prnewswire2-a.akamaihd.net/p/1893751/sp/189375100/thumbnail/entry_id/0_yd44c3tz/def_height/2700/def_width/2700/version/100012/type/1"
-          className="w-3/5 mx-auto rounded"
-          alt=""
-        />
-        <div className="mx-auto bg-yellow-500 px-6 py-4 rounded-full text-white font-bold shadow-xl">
-          DONAR
+          <div className="mx-auto bg-yellow-500 px-6 py-4 rounded-full text-white font-bold shadow-xl mt-10">
+            DONAR
+          </div>
+        </div>
+
+        <div className="border rounded-lg p-4">
+          <img
+            src="https://bfpa.org/wp-content/uploads/2020/04/logo_2019_inverse.png"
+            className="w-1/3 mx-auto rounded"
+            alt=""
+          />
+
+          <div className="mx-auto bg-yellow-500 px-6 py-4 rounded-full text-white font-bold shadow-xl mt-10">
+            DONAR
+          </div>
         </div>
       </div>
     </div>
