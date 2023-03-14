@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 // import Mascotas from "../Controllers/MascotasController";
 import {
   collection,
@@ -9,17 +9,21 @@ import {
   where,
 } from "firebase/firestore";
 import app from "../firebaseConfig";
+import { UserContext } from "../context/UserContext";
 
 const db = getFirestore(app);
 
 const mascotasRef = collection(db, "mascotas");
 
 const InfoMascotaPage = () => {
+  //Id Parámetro
   let { idMascota } = useParams();
 
+  //States
   const [mascota, setMascota] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  //Effect
   useEffect(() => {
     obtenerDatosMascota();
   }, []);
@@ -31,6 +35,9 @@ const InfoMascotaPage = () => {
       setMascota(doc.data());
     });
   };
+
+  //Context
+  const { user } = useContext(UserContext);
 
   return (
     <section className="text-gray-600 body-font overflow-hidden fade-in">
@@ -73,9 +80,12 @@ const InfoMascotaPage = () => {
               {/* <span className="title-font font-medium text-2xl text-gray-900">
                 $58.00
               </span> */}
-              <button className="flex ml-auto text-white bg-sky-600 font-medium border-0 py-2 px-6 focus:outline-none hover:bg-sky-500 rounded-2xl">
+              <Link
+                to={user ? "/registro" : "/login"}
+                className="flex ml-auto text-white bg-yellow-500  font-medium border-0 py-2 px-6 focus:outline-none rounded-2xl"
+              >
                 Adoptar
-              </button>
+              </Link>
               <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:text-red-300">
                 <svg
                   fill="currentColor"

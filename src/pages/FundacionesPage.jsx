@@ -2,7 +2,7 @@ import React from "react";
 
 const FundacionesPage = () => {
   return (
-    <div className="container px-4 md:px-32 my-20 mx-auto text-gray-600">
+    <div className="container px-4 md:px-32 my-20 mx-auto text-gray-600 fade-in">
       <h2 className=" text-3xl md:text-4xl  text-sky-600 font-bold text-center md:text-left my-10">
         ¡Gracias por esta gran labor!
       </h2>

@@ -8,6 +8,7 @@ const LayoutPublic = () => {
   return (
     <>
       <Navbar />
+      <br />
       <main className="mt-10">
         <Outlet />
       </main>

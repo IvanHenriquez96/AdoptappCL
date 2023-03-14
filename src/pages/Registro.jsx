@@ -1,11 +1,24 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import firebaseApp from "../firebaseConfig";
+
+import { UserContext } from "../context/UserContext";
 
 const auth = getAuth();
 
+const db = getFirestore(firebaseApp);
+
 const Registro = () => {
+  //Hooks
+  const navigate = useNavigate();
+
+  //State
   const [datosForm, setDatosForm] = useState({
+    nombre_completo: "",
     email: "",
     password: "",
     repeat_password: "",
@@ -13,13 +26,19 @@ const Registro = () => {
 
   const [errores, setErrores] = useState([]);
 
-  const verificarRegistro = (e) => {
+  //Context
+  const { user, setUser } = useContext(UserContext);
+
+  //Funciones
+  const verificarRegistro = async (e) => {
     e.preventDefault();
     setErrores([]);
 
     //Validaciones
     const errores = [];
 
+    datosForm.nombre_completo.trim().length <= 0 &&
+      errores.push("Nombre Completo Obligatorio");
     datosForm.email.trim().length <= 0 && errores.push("Email Obligatorio");
     datosForm.password.trim().length <= 0 &&
       errores.push("Contraseña Obligatorio");
@@ -28,24 +47,42 @@ const Registro = () => {
     datosForm.password.trim() !== datosForm.repeat_password.trim() &&
       errores.push("Contraseñas no coinciden");
 
-    //Crea el usuario
+    await setErrores(errores);
 
-    setErrores(errores);
-
-    errores.length >= 0 &&
-      createUserWithEmailAndPassword(auth, datosForm.email, datosForm.password)
+    if (errores.length >= 0) {
+      //crea cuenta de usuario
+      await createUserWithEmailAndPassword(
+        auth,
+        datosForm.email,
+        datosForm.password
+      )
         .then((userCredential) => {
-          // Signed in
-          console.log("usuario creado");
+          // Usuario Creado
           const user = userCredential.user;
-          // ...
+          setUser(user); //inicia sesión automaticamente
+          console.log("usuario creado");
+
+          //sube los datos del usuario a localStorage
+          localStorage.setItem("userData", JSON.stringify(user));
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log("error al crear el usuario", errorMessage);
-          // ..
         });
+    }
+
+    // Add a new document with a generated id
+    const newUser = doc(collection(db, "usuarios"));
+
+    // later...
+    await setDoc(newUser, {
+      nombre: datosForm.nombre_completo,
+      email: datosForm.email,
+    });
+    console.log("agregado a la coleccion");
+
+    navigate("/");
   };
 
   const handleChange = (e) => {
@@ -62,6 +99,22 @@ const Registro = () => {
             <h2 className="text-sky-600 text-2xl font-medium title-font mb-5">
               Crea tu cuenta
             </h2>
+
+            <div className="relative mb-4">
+              <label
+                htmlFor="nombre_completo"
+                className="leading-7 text-sm text-sky-600"
+              >
+                Nombre Completo
+              </label>
+              <input
+                type="nombre_completo"
+                value={datosForm.nombre_completo}
+                onChange={handleChange}
+                name="nombre_completo"
+                className="w-full bg-white rounded border border-gray-300 focus:border-cyan-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
 
             <div className="relative mb-4">
               <label htmlFor="email" className="leading-7 text-sm text-sky-600">
@@ -126,7 +179,7 @@ const Registro = () => {
             <p className="text-xs text-gray-500 mt-3">
               Ya tienes una cuenta?
               <span className="cursor-pointer text-cyan-700">
-                <Link to={"/AdoptappCL/login"}> Inicia Sesión!.</Link>
+                <Link to={"/login"}> Inicia Sesión!.</Link>
               </span>
             </p>
           </div>

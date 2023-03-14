@@ -99,7 +99,7 @@ const Login = () => {
             <p className="text-xs text-gray-500 mt-3">
               No tienes una cuenta?
               <span className="cursor-pointer text-cyan-700">
-                <Link to={"/AdoptappCL/registrarse"}> Registrate!.</Link>
+                <Link to={"/registrarse"}> Registrate!.</Link>
               </span>
             </p>
           </div>

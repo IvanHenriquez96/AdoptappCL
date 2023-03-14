@@ -42,7 +42,7 @@ const CardMascota = ({
             <Link
               as={Link}
               to={idMascota.toString()}
-              className="transition-colors text-center bg-yellow-500 hover:bg-yellow-600 p-2 rounded-xl w-full text-white font-medium text-hover shadow-md shadow-yellow-700"
+              className="transition-colors text-center bg-yellow-500 hover:bg-yellow-600 p-2 rounded-xl w-full text-white font-medium text-hover shadow-md"
             >
               Ver Más
             </Link>
