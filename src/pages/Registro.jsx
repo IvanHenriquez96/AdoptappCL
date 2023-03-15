@@ -1,7 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import firebaseApp from "../firebaseConfig";
@@ -51,25 +55,35 @@ const Registro = () => {
 
     if (errores.length >= 0) {
       //crea cuenta de usuario
-      await createUserWithEmailAndPassword(
-        auth,
-        datosForm.email,
-        datosForm.password
-      )
-        .then((userCredential) => {
-          // Usuario Creado
-          const user = userCredential.user;
-          setUser(user); //inicia sesión automaticamente
-          console.log("usuario creado");
 
-          //sube los datos del usuario a localStorage
-          localStorage.setItem("userData", JSON.stringify(user));
+      try {
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
+          datosForm.email,
+          datosForm.password
+        );
+
+        setUser(user); //inicia sesión automaticamente
+
+        //le agrega el nombre
+        updateProfile(user, {
+          displayName: datosForm.nombre_completo,
         })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log("error al crear el usuario", errorMessage);
-        });
+          .then(() => {
+            // Profile updated!
+            console.log("usuario actualizado, se agrego el displayname");
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
+
+        console.log("usuario creado");
+      } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("error al crear el usuario", errorMessage);
+      }
     }
 
     // Add a new document with a generated id
