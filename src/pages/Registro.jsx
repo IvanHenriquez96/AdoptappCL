@@ -93,6 +93,7 @@ const Registro = () => {
     await setDoc(newUser, {
       nombre: datosForm.nombre_completo,
       email: datosForm.email,
+      tipo: "Usuario",
     });
     console.log("agregado a la coleccion");
 

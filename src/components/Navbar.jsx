@@ -71,7 +71,7 @@ export const Navbar = () => {
                 <div className="hidden sm:flex sm:gap-4">
                   <Link
                     className="rounded-md bg-yellow-500 hover:bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white shadow "
-                    to={"perfil"}
+                    to={"dashboard"}
                   >
                     Mi Perfil
                   </Link>

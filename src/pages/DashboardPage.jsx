@@ -1,43 +1,86 @@
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+
 const DashboardPage = () => {
+  const { user } = useContext(UserContext);
+  console.log(user);
+
   return (
-    <div className="mt-20 text-black text-3xl">
-      <div className="flex h-screen w-16 flex-col justify-between border-r bg-white">
-        <div>
-          <div className="inline-flex h-16 w-16 items-center justify-center">
-            <span className="grid h-10 w-10 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600">
-              L
+    <div className="grid">
+      {/* MODO CELULAR */}
+      <div className="md:hidden px-4 text-gray-500 h-screen">
+        <p className="text-xl font-bold text-sky-600 my-4 ">
+          Bienvenido: {user.displayName}
+        </p>
+
+        <p className="my-5 text-sky-600 border-b p-1 border-sky-700">
+          Mis citas Agendas
+        </p>
+
+        <div className="border rounded-lg border-sky-600 p-4 my-5">
+          <p>
+            <span className="text-sky-600">Fecha y hora:</span> 16-03-2023 15:23
+          </p>
+          <p>
+            <span className="text-sky-600">Mascota:</span> Baltazar
+          </p>
+          <p>
+            <span className="text-sky-600">Fundación:</span> AdoptaChile
+          </p>
+        </div>
+
+        <div className="border rounded-lg border-sky-600 p-4 my-5">
+          <p>
+            <span className="text-sky-600">Fecha y hora:</span> 16-03-2023 15:23
+          </p>
+          <p>
+            <span className="text-sky-600">Mascota:</span> Baltazar
+          </p>
+          <p>
+            <span className="text-sky-600">Fundación:</span> AdoptaChile
+          </p>
+        </div>
+      </div>
+
+      {/* MODO ESCRITORIO */}
+      <div className="hidden md:block text-black text-3xl">
+        <div className="flex h-screen w-16 flex-col justify-between border-r bg-white">
+          <div>
+            {/* <div className="inline-flex h-16 w-16 items-center justify-center">
+            <span className="grid h-10 w-10 place-content-center rounded-lg bg-gray-100 text-xs text-sky-700 font-bold">
+              {user.displayName[0]}
             </span>
-          </div>
+          </div> */}
 
-          <div className="border-t border-gray-100">
-            <nav aria-label="Main Nav" className="flex flex-col p-2">
-              <div className="py-4">
-                <a
-                  href=""
-                  className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
+            <div className="border-t border-gray-100">
+              <nav aria-label="Main Nav" className="flex flex-col p-2">
+                <div className="py-4">
+                  <a
+                    href=""
+                    className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-sky-700"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 opacity-75"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
 
-                  <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-sky-700 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                    Mi cuenta
-                  </span>
-                </a>
-              </div>
+                    <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-sky-700 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
+                      Mi cuenta
+                    </span>
+                  </a>
+                </div>
 
-              <ul className="space-y-1 border-t border-gray-100 pt-4">
+                {/* <ul className="space-y-1 border-t border-gray-100 pt-4">
                 <li>
                   <a
                     href=""
@@ -146,37 +189,38 @@ const DashboardPage = () => {
                     </span>
                   </a>
                 </li>
-              </ul>
-            </nav>
+              </ul> */}
+              </nav>
+            </div>
           </div>
-        </div>
 
-        <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
-          <form action="/logout">
-            <button
-              type="submit"
-              className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 opacity-75"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
+          <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
+            <form action="/logout">
+              <button
+                type="submit"
+                className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 opacity-75"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                  />
+                </svg>
 
-              <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-sky-700 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                Logout
-              </span>
-            </button>
-          </form>
+                <span className="absolute left-full top-1/2 ml-4 -translate-y-1/2 rounded bg-sky-700 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
+                  Cerrar Sesión
+                </span>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -131,20 +131,22 @@ const InfoMascotaPage = () => {
                 </button>
               </div>
             </div>
-            {/* <img
-            alt="ecommerce"
-            className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-            src="https://dummyimage.com/400x400"
-          /> */}
 
             <img
-              alt="ecommerce"
+              alt="mascota_perfil"
               className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded-xl"
               src={mascota.imagen_perfil}
             />
           </div>
         </div>
+
+        {/* Galería */}
+
+        {/* <div className="md:text-4xl text-3xl font-bold text-center text-sky-600">
+          Galería
+        </div> */}
       </section>
+
       <ModalAdoptar isOpen={isOpenModal} onClose={handleCloseModal}>
         {user && (
           <div>
@@ -169,14 +171,18 @@ const InfoMascotaPage = () => {
               fundación para que inicies el proceso de adopción.
             </p>
 
-            <div className="flex w-full mt-5 p-4 bg-green-600 text-white rounded-full font-bold justify-center">
+            <a
+              href="https://wa.me/56912345678"
+              target="_blank"
+              className="flex w-full mt-5 p-4 bg-green-600 text-white rounded-full font-bold justify-center"
+            >
               <img
                 src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-whatsapp-mobile-software-icon-png-image_6315991.png"
                 alt="whatsapp_logo"
                 className="w-7  bg-white rounded-full p-1 mr-2"
               />
               <p>Hablar con la fundación</p>
-            </div>
+            </a>
           </div>
         )}
       </ModalAdoptar>
