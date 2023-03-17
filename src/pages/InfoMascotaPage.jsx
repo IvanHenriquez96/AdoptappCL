@@ -79,38 +79,37 @@ const InfoMascotaPage = () => {
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-              <h2 className="text-sm title-font text-gray-600 tracking-widest">
+              <h2 className="text-md title-font text-gray-600 tracking-widest">
                 Fundación: {mascota.fundacion}
               </h2>
-              <h1 className="text-sky-600 text-3xl title-font font-medium mb-4 mt-2">
+              <h1 className="text-sky-600 text-3xl title-font font-medium my-4">
                 {mascota.nombre}
               </h1>
               <div className="flex mb-4">
-                <a className="flex-grow text-sky-700 border-b-2 border-sky-600 py-2 text-lg px-1">
+                <a className="flex-grow text-sky-600 font-semibold border-b-2 border-sky-600 py-2 text-lg px-1">
                   Descripción
                 </a>
-                {/* <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-                Reviews
-              </a>
-              <a className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
-                Details
-              </a> */}
               </div>
-              <p className="leading-relaxed mb-4">{mascota.descripcion}</p>
+              <p className="leading-relaxed mb-4 border-b-2 border-sky-600 pb-5">
+                {mascota.descripcion}
+              </p>
               <div className="flex border-t border-gray-200 py-2">
                 <span className="text-gray-500">Edad</span>
-                <span className="ml-auto text-gray-900">2 Meses</span>
+                <span className="ml-auto text-gray-900">{mascota.edad}</span>
               </div>
               <div className="flex border-t border-gray-200 py-2">
                 <span className="text-gray-500">Tamaño</span>
-                <span className="ml-auto text-gray-900">Pequeño</span>
+                <span className="ml-auto text-gray-900">{mascota.tamano}</span>
               </div>
               <div className="flex border-t border-b mb-6 border-gray-200 py-2">
                 <span className="text-gray-500">
                   Cuidados especiales/Bajo tratamiento
                 </span>
-                <span className="ml-auto text-gray-900">SI</span>
+                <span className="ml-auto text-gray-900">
+                  {mascota.discapacidad ? "SI" : "NO"}
+                </span>
               </div>
+
               <div className="flex">
                 <button
                   onClick={verificaUsuario}
@@ -147,39 +146,39 @@ const InfoMascotaPage = () => {
         </div>
       </section>
       <ModalAdoptar isOpen={isOpenModal} onClose={handleCloseModal}>
-        <h1 className="text-xl text-sky-600 font-bold mb-4">
-          ¡Muchas Gracias! {user.displayName}
-        </h1>
-        <p className="text-gray-800">
-          Te pondremos en contácto con la fundación "
-          <span className="font-semibold text-sky-700">
-            {mascota.fundacion}
-          </span>
-          " para que tramites una visita a "
-          <span className="font-semibold text-sky-700">{mascota.nombre}</span>"
-          esperamos que hayas leído la descripción con atención ya que este
-          amiguito puede que necesite de{" "}
-          <span className="font-semibold text-sky-700">
-            Cuidados Especiales
-          </span>
-          , a continuáción vamos a necesitar un número de teléfono ya que se
-          iniciará un chat vía Whatsapp con la fundación.
-        </p>
+        {user && (
+          <div>
+            <h1 className="text-xl text-sky-600 font-bold mb-4">
+              ¡Muchas Gracias! {user.displayName}
+            </h1>
+            <p className="text-gray-800">
+              Te pondremos en contácto con la fundación "
+              <span className="font-semibold text-sky-700">
+                {mascota.fundacion}
+              </span>
+              " para que tramites una visita a "
+              <span className="font-semibold text-sky-700">
+                {mascota.nombre}
+              </span>
+              " esperamos que hayas leído la descripción con atención ya que
+              este amiguito puede que necesite de{" "}
+              <span className="font-semibold text-sky-700">
+                Cuidados Especiales
+              </span>
+              , a continuáción vamos a abrir un chat vía Whatsapp con la
+              fundación para que inicies el proceso de adopción.
+            </p>
 
-        <form>
-          <div className="relative my-4">
-            <label htmlFor="email" className="leading-7 text-sm text-sky-600">
-              Celular
-            </label>
-            <input
-              type="text"
-              // value={datosForm.email}
-              // onChange={handleChange}
-              name="telefono"
-              className="w-full bg-white rounded border border-gray-300 focus:border-cyan-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            />
+            <div className="flex w-full mt-5 p-4 bg-green-600 text-white rounded-full font-bold justify-center">
+              <img
+                src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-whatsapp-mobile-software-icon-png-image_6315991.png"
+                alt="whatsapp_logo"
+                className="w-7  bg-white rounded-full p-1 mr-2"
+              />
+              <p>Hablar con la fundación</p>
+            </div>
           </div>
-        </form>
+        )}
       </ModalAdoptar>
     </>
   );

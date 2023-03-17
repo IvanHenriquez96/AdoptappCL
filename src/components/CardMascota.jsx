@@ -5,8 +5,11 @@ const CardMascota = ({
   idMascota,
   nombre,
   imagen_perfil,
-  descripcion,
+  edad,
+  raza,
+  sexo,
   likes,
+  especie,
 }) => {
   return (
     <div className="p-4 my-4 fade-in">
@@ -18,26 +21,40 @@ const CardMascota = ({
             </figure>
           </div>
           <div className="w-full md:w-3/5 space-y-4 flex flex-col justify-center items-center">
-            <div className="flex flex-col justify-center">
+            <div className="flex justify-center items-center">
+              <img
+                src={
+                  especie == "Perro"
+                    ? "https://cdn-icons-png.flaticon.com/512/1650/1650558.png"
+                    : "https://cdn-icons-png.flaticon.com/512/1650/1650555.png"
+                }
+                className="h-7 mr-2"
+              />
+
               <h1 className="text-center md:text-left text-2xl font-bold text-sky-600 my-2">
                 {nombre}
               </h1>
-              <p className="inline text-gray-700 font-normal leading-6 w-full text-base">
-                {descripcion}
-              </p>
             </div>
-            {/* <ul className="space-y-4  md:space-y-0 space-x-0 md:space-x-4 flex flex-col md:flex-row text-left justify-center">
-              <li className="text-sm">NYC</li>
-              <li className="text-sm">Member since 2019</li>
-            </ul> */}
+            <div className="text-gray-700 grid grid-cols-2 md:text-sm">
+              <p>Edad: </p>
+              {edad}
+              <p>Raza:</p>
+              {raza}
+              <p>Sexo:</p>
+              <img
+                src={
+                  sexo == "Macho"
+                    ? "https://cdn-icons-png.flaticon.com/512/2404/2404394.png"
+                    : "https://cdn-icons-png.flaticon.com/512/2404/2404324.png"
+                }
+                className="w-5"
+              />
+            </div>
 
             <ul className="space-x-4 flex flex-row justify-center w-full mb-4">
               <li className="text-sm text-sky-600">
                 <strong className="text-sky-600">{likes}</strong> Likes
               </li>
-              {/* <li className="text-sm text-cyan-800">
-                <strong className="text-cyan-900">100</strong> Following
-              </li> */}
             </ul>
             <Link
               as={Link}
@@ -46,14 +63,9 @@ const CardMascota = ({
             >
               Ver Más
             </Link>
-
-            {/* <button className="flex mx-auto my-5 text-white font-bold bg-cyan-600 border-0 py-2 px-8 focus:outline-none hover:bg-cyan-700 rounded-2xl text-lg">
-              ¡ADOPTA!
-            </button> */}
           </div>
         </div>
       </div>
-      {/* </div> */}
     </div>
   );
 };

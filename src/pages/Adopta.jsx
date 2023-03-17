@@ -50,7 +50,7 @@ const Adopta = () => {
     return (
       <div className="fade-in">
         <div className="text-center text-3xl md:text-4xl font-bold text-sky-600 mt-20 fade-in">
-          Mascotas
+          Te presentamos a...
         </div>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-3  md:px-32 mt-10">
@@ -58,11 +58,15 @@ const Adopta = () => {
             return (
               <CardMascota
                 key={mascota.id}
+                edad={mascota.edad}
+                raza={mascota.raza}
                 idMascota={mascota.id}
                 nombre={mascota.nombre}
                 imagen_perfil={mascota.imagen_perfil}
                 descripcion={mascota.descripcion}
                 likes={mascota.likes}
+                sexo={mascota.sexo}
+                especie={mascota.especie}
               />
             );
           })}
