@@ -8,7 +8,7 @@ const navigation = [
   { name: "Inicio", href: "/", current: true },
   { name: "Mascotas", href: "/adopta", current: false },
   { name: "Fundaciones", href: "/fundaciones", current: false },
-  { name: "Recursos", href: "/recursos", current: false },
+  // { name: "Recursos", href: "/recursos", current: false },
   { name: "Quiénes somos", href: "/quienessomos", current: false },
 ];
 

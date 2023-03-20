@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
       { path: "/adopta", element: <Adopta /> },
       { path: "/adopta/:idMascota", element: <InfoMascotaPage /> },
       { path: "/fundaciones", element: <FundacionesPage /> },
-      { path: "/recursos", element: <RecursosPage /> },
+      // { path: "/recursos", element: <RecursosPage /> },
       { path: "/quienessomos", element: <QuienesSomos /> },
       { path: "/login", element: <Login /> },
       { path: "/Registrarse", element: <Registro /> },
