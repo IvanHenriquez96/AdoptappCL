@@ -16,6 +16,10 @@ const Login = () => {
   });
 
   const [error, setError] = useState(null);
+  const errores_esp = {
+    "auth/app-deleted": "-Instancia de Firebase Borrada",
+    "auth/user-not-found": "-Credenciales Invalidas",
+  };
 
   const verificarLogin = (e) => {
     e.preventDefault();
@@ -36,9 +40,9 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log("no logueado, error", errorMessage);
+        console.log("no logueado, error", errorMessage, { errorCode });
 
-        setError(errorMessage);
+        setError(errores_esp[errorCode]);
       });
   };
 
@@ -51,7 +55,7 @@ const Login = () => {
   return (
     <>
       <form onSubmit={verificarLogin}>
-        <section className="text-gray-600 body-font  fade-in flex justify-center items-center mt-10">
+        <section className="text-gray-600 body-font  fade-in flex justify-center items-center mt-10 h-screen">
           <div className=" bg-gray-100 rounded-lg p-8 md:w-1/2 my-24 mx-2">
             <h2 className="text-sky-600 text-2xl font-medium title-font mb-5">
               Iniciar Sesión

@@ -51,11 +51,11 @@ const CardMascota = ({
               />
             </div>
 
-            <ul className="space-x-4 flex flex-row justify-center w-full mb-4">
+            {/* <ul className="space-x-4 flex flex-row justify-center w-full mb-4">
               <li className="text-sm text-sky-600">
                 <strong className="text-sky-600">{likes}</strong> Likes
               </li>
-            </ul>
+            </ul> */}
             <Link
               as={Link}
               to={idMascota.toString()}

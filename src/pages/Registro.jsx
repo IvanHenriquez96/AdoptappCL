@@ -29,12 +29,15 @@ const Registro = () => {
   });
 
   const [errores, setErrores] = useState([]);
+  const errores_esp = {
+    "auth/weak-password": "La contraseña es muy débil",
+  };
 
   //Context
   const { user, setUser } = useContext(UserContext);
 
   //Funciones
-  const verificarRegistro = async (e) => {
+  const validaFormularioRegistro = async (e) => {
     e.preventDefault();
     setErrores([]);
 
@@ -51,39 +54,52 @@ const Registro = () => {
     datosForm.password.trim() !== datosForm.repeat_password.trim() &&
       errores.push("Contraseñas no coinciden");
 
-    await setErrores(errores);
+    setErrores(errores);
 
-    if (errores.length >= 0) {
+    if (errores.length == 0) {
       //crea cuenta de usuario
+      crearCuentaUsuario();
+    }
+  };
 
-      try {
-        const { user } = await createUserWithEmailAndPassword(
-          auth,
-          datosForm.email,
-          datosForm.password
-        );
+  const crearCuentaUsuario = async () => {
+    setErrores([]);
+    const errores = [];
 
-        setUser(user); //inicia sesión automaticamente
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        datosForm.email,
+        datosForm.password
+      );
 
-        //le agrega el nombre
-        updateProfile(user, {
-          displayName: datosForm.nombre_completo,
+      setUser(user); //inicia sesión automaticamente
+
+      //le agrega el nombre
+      updateProfile(user, {
+        displayName: datosForm.nombre_completo,
+      })
+        .then(() => {
+          // Profile updated!
+          console.log("usuario actualizado, se agrego el displayname");
         })
-          .then(() => {
-            // Profile updated!
-            console.log("usuario actualizado, se agrego el displayname");
-          })
-          .catch((error) => {
-            // An error occurred
-            // ...
-          });
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage, "error en el update");
 
-        console.log("usuario creado");
-      } catch (error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("error al crear el usuario", errorMessage);
-      }
+          return;
+        });
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      errores.push(errores_esp[errorCode]);
+
+      console.log("error al crear el usuario", errorMessage);
+      setErrores(errores);
+
+      return;
     }
 
     // Add a new document with a generated id
@@ -99,7 +115,6 @@ const Registro = () => {
 
     navigate("/");
   };
-
   const handleChange = (e) => {
     console.log(e.target.value);
     console.log(e.target.name);
@@ -108,8 +123,8 @@ const Registro = () => {
 
   return (
     <>
-      <form onSubmit={verificarRegistro}>
-        <section className="text-gray-600 body-font  fade-in flex justify-center items-center">
+      <form onSubmit={validaFormularioRegistro}>
+        <section className="text-gray-600 body-font  fade-in flex justify-center items-center h-screen">
           <div className=" bg-gray-100 rounded-lg p-8 md:w-1/2 my-24 mx-4">
             <h2 className="text-sky-600 text-2xl font-medium title-font mb-5">
               Crea tu cuenta
@@ -183,7 +198,6 @@ const Registro = () => {
                       - {error}
                     </li>
                   ))}
-                  {/* <li>{errores}</li> */}
                 </ul>
               </div>
             )}
