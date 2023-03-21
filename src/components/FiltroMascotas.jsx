@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const FiltroMascotas = ({ mascotas, setMascotas }) => {
+const FiltroMascotas = ({ mascotasOriginal, setMascotas }) => {
   // const mascotas_original = JSON.parse(localStorage.getItem("ListadoMascotas"));
   const [datosFiltro, setDatosFiltro] = useState({
     nombre: "",
@@ -15,22 +15,26 @@ const FiltroMascotas = ({ mascotas, setMascotas }) => {
   };
 
   const buscarMascota = (e) => {
-    console.log("comienza la busqueda", datosFiltro, mascotas);
+    console.log("comienza la busqueda", datosFiltro, mascotasOriginal);
 
-    let mascotas_initial = [
-      ...JSON.parse(localStorage.getItem("ListadoMascotas")),
-    ];
+    // let mascotas_initial = [
+    //   ...JSON.parse(localStorage.getItem("ListadoMascotas")),
+    // ];
+
+    let mascotas_initial = [];
 
     if (datosFiltro.especie !== "") {
       console.log("entra filtro especie");
 
-      mascotas_initial = mascotas.filter((mascota) => {
+      mascotas_initial = mascotasOriginal.filter((mascota) => {
         return (
           mascota.especie.toLowerCase() == datosFiltro.especie.toLowerCase()
         );
       });
+    } else {
+      mascotas_initial = mascotasOriginal;
     }
-    console.log(mascotas_initial);
+    // // console.log(mascotas_initial);
 
     if (datosFiltro.sexo !== "") {
       console.log("entra filtro sexo");
@@ -129,7 +133,7 @@ const FiltroMascotas = ({ mascotas, setMascotas }) => {
       </div>
 
       <button
-        className="mt-5 px-2 py-1 rounded bg-yellow-500 font-bold"
+        className="mt-5 px-2 py-1 rounded bg-yellow-500 font-semibold w-full"
         onClick={buscarMascota}
       >
         Filtrar

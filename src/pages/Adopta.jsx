@@ -66,7 +66,7 @@ const Adopta = () => {
       <div className="fade-in relative">
         {filtroIsOpen && (
           <FiltroMascotas
-            mascotas={mascotasOriginal}
+            mascotasOriginal={mascotasOriginal}
             setMascotas={setMascotas}
           />
         )}
