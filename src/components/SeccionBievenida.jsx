@@ -1,7 +1,7 @@
 const SeccionBievenida = () => {
   return (
     <div className="text-gray-600 container px-4 md:px-32 my-20">
-      <h2 className=" text-3xl md:text-4xl  text-sky-600 font-bold text-center md:text-left my-10">
+      <h2 className=" text-3xl md:text-4xl  text-sky-600 font-bold text-center md:text-left my-10 ">
         ¡El nuevo integrante de tu familia te está esperando!
       </h2>
 
