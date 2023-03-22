@@ -4,13 +4,7 @@ import CardSkeleton from "../components/CardSkeleton";
 import app from "../firebaseConfig";
 
 // import mascotas from "../Controllers/MascotasController";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-} from "firebase/firestore";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import FiltroMascotas from "../components/FiltroMascotas";
 
 const db = getFirestore(app);

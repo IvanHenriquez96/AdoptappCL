@@ -19,6 +19,8 @@ const Login = () => {
   const errores_esp = {
     "auth/app-deleted": "-Instancia de Firebase Borrada",
     "auth/user-not-found": "-Credenciales Invalidas",
+    "auth/wrong-password": "-Credenciales Invalidas",
+    "auth/too-many-requests": "-Demasiados Intentos invalidos",
   };
 
   const verificarLogin = (e) => {
@@ -40,7 +42,13 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log("no logueado, error", errorMessage, { errorCode });
+        console.log(
+          "no logueado, error",
+          errorMessage,
+
+          { errorCode },
+          errores_esp[errorCode]
+        );
 
         setError(errores_esp[errorCode]);
       });

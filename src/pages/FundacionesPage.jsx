@@ -36,7 +36,7 @@ const FundacionesPage = () => {
           </div>
         </div>
 
-        <div className="border rounded-lg p-4">
+        {/* <div className="border rounded-lg p-4">
           <img
             src="https://bfpa.org/wp-content/uploads/2020/04/logo_2019_inverse.png"
             className="w-1/3 mx-auto rounded"
@@ -46,7 +46,7 @@ const FundacionesPage = () => {
           <div className="mx-auto bg-yellow-500 px-6 py-4 rounded-full text-white font-bold shadow-xl mt-10">
             DONAR
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
