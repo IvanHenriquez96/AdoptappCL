@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
 const FormularioMascota = () => {
-  // const [isMacho, setIsMacho] = useState(true);
-  // const [isCuidadosEspeciales, setIsCuidadosEspeciales] = useState(false);
-  // const [isPerro, setIsPerro] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const [datosForm, setDatosForm] = useState({
     especie: "Perro",
