@@ -8,6 +8,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import FormularioMascota from "../components/FormularioMascota";
 
 const db = getFirestore(app);
 
@@ -16,13 +17,16 @@ const DashboardPage = () => {
   const { user } = useContext(UserContext);
   console.log(user);
 
+  const [datosUsuario, setDatosUsuario] = useState("Usuario");
   const [seccionCitas, setSeccionCitas] = useState(true);
   const [seccionMascotas, setSeccionMascotas] = useState(false);
+  const [seccionFormMascota, setSeccionFormMascota] = useState(false);
   const [mascotas, setMascotas] = useState([]);
   const [citas, setCitas] = useState([]);
 
   //Effects
   useEffect(() => {
+    obtenerUsuario(db);
     obtenerMascotas(db);
     obtenerCitas(db);
   }, []);
@@ -30,6 +34,16 @@ const DashboardPage = () => {
   console.log({ mascotas }, { citas });
 
   //Functions
+  const obtenerUsuario = async (db) => {
+    const usuariosCol = collection(db, "usuarios");
+    const q = query(usuariosCol, where("email", "==", user.email));
+    const usuarioSnapshot = await getDocs(q);
+    const usuarioList = await usuarioSnapshot.docs.map((doc) => doc.data());
+    if (usuarioList[0].tipo === "Fundacion") {
+      setDatosUsuario("Fundacion");
+    }
+  };
+
   const obtenerMascotas = async (db) => {
     const mascotasCol = collection(db, "mascotas");
     const q = query(mascotasCol, where("id_fundacion", "==", user.uid));
@@ -61,26 +75,30 @@ const DashboardPage = () => {
             onClick={() => {
               setSeccionCitas(true);
               setSeccionMascotas(false);
+              setSeccionFormMascota(false);
             }}
           >
             Mis citas Agendas
           </p>
 
-          <p
-            className={`mt-5 cursor-pointer ${
-              seccionMascotas ? "text-sky-600 font-semibold" : "text-gray-500"
-            }`}
-            onClick={() => {
-              setSeccionCitas(false);
-              setSeccionMascotas(true);
-            }}
-          >
-            Mis Mascotas Inscritas
-          </p>
+          {datosUsuario !== "Usuario" && (
+            <p
+              className={`mt-5 cursor-pointer ${
+                seccionMascotas ? "text-sky-600 font-semibold" : "text-gray-500"
+              }`}
+              onClick={() => {
+                setSeccionCitas(false);
+                setSeccionMascotas(true);
+                setSeccionFormMascota(false);
+              }}
+            >
+              Mis Mascotas Inscritas
+            </p>
+          )}
         </div>
 
         {seccionCitas && (
-          <div className="fade-in">
+          <div className="fade-in min-h-screen">
             {citas.map((cita, index) => {
               return (
                 <div
@@ -107,18 +125,34 @@ const DashboardPage = () => {
                 </div>
               );
             })}
+
+            {citas.length == 0 && (
+              <p className="min-h-screen mt-10 text-3xl font-semibold text-sky-600">
+                No hay Citas Agendadas
+              </p>
+            )}
           </div>
         )}
 
         {seccionMascotas && (
-          <div className="fade-in">
-            <button className="w-full bg-sky-600 text-white py-1 rounded-lg font-semibold my-5">
+          <div className="min-h-screen fade-in">
+            <button
+              className="w-full bg-sky-600 text-white py-1 rounded-lg font-semibold my-5"
+              onClick={() => {
+                setSeccionCitas(false);
+                setSeccionMascotas(false);
+                setSeccionFormMascota(true);
+              }}
+            >
               Agregar Mascota
             </button>
 
-            {mascotas.map((mascota) => {
+            {mascotas.map((mascota, index) => {
               return (
-                <div className="border rounded-lg border-sky-600 p-4 mb-5">
+                <div
+                  key={index}
+                  className="border rounded-lg border-sky-600 p-4 mb-5"
+                >
                   <p className="mb-2">
                     <span className="text-sky-600">Nombre:</span>{" "}
                     {mascota.nombre}
@@ -140,21 +174,10 @@ const DashboardPage = () => {
                 </div>
               );
             })}
-
-            {/* <div className="border rounded-lg border-sky-600 p-4 my-5">
-              <p>
-                <span className="text-sky-600">Fecha y hora:</span> 16-03-2023
-                15:23
-              </p>
-              <p>
-                <span className="text-sky-600">Mascota:</span> Baltazar
-              </p>
-              <p>
-                <span className="text-sky-600">Fundación:</span> AdoptaChile
-              </p>
-            </div> */}
           </div>
         )}
+
+        {seccionFormMascota && <FormularioMascota />}
       </div>
     </div>
   );
