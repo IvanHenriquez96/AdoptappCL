@@ -177,7 +177,15 @@ const DashboardPage = () => {
           </div>
         )}
 
-        {seccionFormMascota && <FormularioMascota />}
+        {seccionFormMascota && (
+          <FormularioMascota
+            setSeccionCitas={setSeccionCitas}
+            setSeccionMascotas={setSeccionMascotas}
+            setSeccionFormMascota={setSeccionFormMascota}
+            setMascotas={setMascotas}
+            mascotas={mascotas}
+          />
+        )}
       </div>
     </div>
   );

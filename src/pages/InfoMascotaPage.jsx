@@ -18,6 +18,7 @@ const usuariosRef = collection(db, "usuarios");
 const InfoMascotaPage = () => {
   //Id Parámetro
   let { idMascota } = useParams();
+  console.log({ idMascota });
 
   //States
   const [mascota, setMascota] = useState({});
@@ -32,7 +33,7 @@ const InfoMascotaPage = () => {
   }, []);
 
   const obtenerDatosMascota = async () => {
-    const q = query(mascotasRef, where("id", "==", parseInt(idMascota)));
+    const q = query(mascotasRef, where("id", "==", idMascota));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       setMascota(doc.data());

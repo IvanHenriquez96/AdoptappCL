@@ -3,7 +3,7 @@ import React from "react";
 const QuienesSomos = () => {
   return (
     <div className="fade-in">
-      <section className="text-gray-600 body-font">
+      <section className="text-gray-600 body-font min-h-screen">
         <div className="container px-5 py-24 mx-auto">
           {/* <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col"> */}
           <div className="flex items-center lg:w-4/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">

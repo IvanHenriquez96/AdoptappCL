@@ -30,7 +30,16 @@ const Adopta = () => {
   const obtenerMascotas = async function getCities(db) {
     const mascotasCol = collection(db, "mascotas");
     const mascotaSnapshot = await getDocs(mascotasCol);
-    const mascotaList = await mascotaSnapshot.docs.map((doc) => doc.data());
+    const mascotaList = await mascotaSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      const id = doc.id;
+
+      return {
+        id,
+        ...data,
+      };
+    });
+    console.log(mascotaList);
 
     setMascotas(mascotaList);
     setMascotasOriginal(mascotaList);
@@ -57,7 +66,7 @@ const Adopta = () => {
     );
   } else {
     return (
-      <div className="fade-in relative">
+      <div className="fade-in relative min-h-screen">
         {filtroIsOpen && (
           <FiltroMascotas
             mascotasOriginal={mascotasOriginal}
