@@ -33,13 +33,14 @@ const Adopta = () => {
     const mascotaList = await mascotaSnapshot.docs.map((doc) => {
       const data = doc.data();
       const id = doc.id;
+      // console.log({ data }, { id });
 
       return {
         id,
         ...data,
       };
     });
-    console.log(mascotaList);
+    // console.log(mascotaList);
 
     setMascotas(mascotaList);
     setMascotasOriginal(mascotaList);

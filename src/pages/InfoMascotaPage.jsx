@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   collection,
+  doc,
+  getDoc,
   getDocs,
   getFirestore,
   query,
@@ -18,7 +20,7 @@ const usuariosRef = collection(db, "usuarios");
 const InfoMascotaPage = () => {
   //Id Parámetro
   let { idMascota } = useParams();
-  console.log({ idMascota });
+  // console.log({ idMascota });
 
   //States
   const [mascota, setMascota] = useState({});
@@ -33,11 +35,12 @@ const InfoMascotaPage = () => {
   }, []);
 
   const obtenerDatosMascota = async () => {
-    const q = query(mascotasRef, where("id", "==", idMascota));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      setMascota(doc.data());
-    });
+    const mascotaRef = doc(db, "mascotas", idMascota);
+
+    try {
+      const mascotaSnap = await getDoc(mascotaRef);
+      setMascota(mascotaSnap.data());
+    } catch (error) {}
   };
 
   const obtenerDatosUsuario = async () => {
