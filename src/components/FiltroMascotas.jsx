@@ -58,7 +58,9 @@ const FiltroMascotas = ({ mascotasOriginal, setMascotas }) => {
     if (datosFiltro.nombre !== "") {
       console.log("entra filtro nombre");
       mascotas_initial = mascotas_initial.filter((mascota) => {
-        return mascota.nombre.toLowerCase().includes(datosFiltro.nombre.trim());
+        return mascota.nombre
+          .toLowerCase()
+          .includes(datosFiltro.nombre.trim().toLocaleLowerCase());
       });
     }
 

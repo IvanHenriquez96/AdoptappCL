@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import firebaseApp from "../firebaseConfig";
 
@@ -12,6 +12,7 @@ const FormularioMascota = ({
   setSeccionFormMascota,
   mascotas,
   setMascotas,
+  mascotaAEditar,
 }) => {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,14 +20,14 @@ const FormularioMascota = ({
   const navigate = useNavigate();
 
   const [datosForm, setDatosForm] = useState({
-    especie: "Perro",
-    nombre: "",
-    descripcion: "",
-    edad: "",
-    raza: "",
-    sexo: "Macho",
-    cuidados_especiales: "No",
-    imagen_perfil: "",
+    especie: mascotaAEditar.especie || "Perro",
+    nombre: mascotaAEditar.nombre || "",
+    descripcion: mascotaAEditar.descripcion || "",
+    edad: mascotaAEditar.edad || "",
+    raza: mascotaAEditar.raza || "",
+    sexo: mascotaAEditar.sexo || "Macho",
+    cuidados_especiales: mascotaAEditar.cuidados_especiales || "No",
+    imagen_perfil: mascotaAEditar.imagen_perfil || "",
   });
 
   const handleChange = (e) => {
@@ -54,7 +55,14 @@ const FormularioMascota = ({
     } else {
       //Guarda la nueva mascota
 
-      addMascota();
+      if (mascotaAEditar.id) {
+        //Tiene ID, ya existe, hay que actualizarlo
+
+        updateMascota();
+      } else {
+        //Es nuevo, agregarlo a la collection
+        addMascota();
+      }
 
       //Para prueba
       setTimeout(() => {
@@ -70,7 +78,6 @@ const FormularioMascota = ({
     // Add a new document with a generated id
     const newMascota = doc(collection(db, "mascotas"));
 
-    // later...
     await setDoc(newMascota, {
       adoptado: false,
       cuidados_especiales: datosForm.cuidados_especiales,
@@ -89,8 +96,36 @@ const FormularioMascota = ({
       tratos_especiales: [],
     });
 
-    setMascotas(mascotas);
+    // setMascotas(mascotas);
     console.log("agregado a la coleccion");
+
+    navigate("/adopta");
+  };
+
+  const updateMascota = async () => {
+    const mascotaRef = doc(db, "mascotas", mascotaAEditar.id);
+
+    await updateDoc(mascotaRef, {
+      adoptado: false,
+      cuidados_especiales: datosForm.cuidados_especiales,
+      descripcion: datosForm.descripcion,
+      discapacidad: datosForm.cuidados_especiales == "Si" ? true : false,
+      edad: datosForm.edad,
+      especie: datosForm.especie,
+      fundacion: "ChileAdopta",
+      id_fundacion: "e0646hPugJNgYMMCq33m5UUk51p1",
+      imagen_perfil: datosForm.imagen_perfil,
+      nombre: datosForm.nombre,
+      raza: datosForm.raza,
+      sexo: datosForm.sexo,
+      tipo: "Usuario",
+      tamano: "N/A",
+      tratos_especiales: [],
+    });
+
+    console.log("se actualizó la mascota");
+
+    navigate("/adopta");
   };
 
   return (

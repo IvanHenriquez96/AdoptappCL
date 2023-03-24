@@ -15,13 +15,14 @@ const db = getFirestore(app);
 const DashboardPage = () => {
   //States
   const { user } = useContext(UserContext);
-  console.log(user);
+  // console.log(user);
 
   const [datosUsuario, setDatosUsuario] = useState("Usuario");
   const [seccionCitas, setSeccionCitas] = useState(true);
   const [seccionMascotas, setSeccionMascotas] = useState(false);
   const [seccionFormMascota, setSeccionFormMascota] = useState(false);
   const [mascotas, setMascotas] = useState([]);
+  const [mascotaAEditar, setMascotaAEditar] = useState({});
   const [citas, setCitas] = useState([]);
 
   //Effects
@@ -31,7 +32,7 @@ const DashboardPage = () => {
     obtenerCitas(db);
   }, []);
 
-  console.log({ mascotas }, { citas });
+  // console.log({ mascotas }, { citas });
 
   //Functions
   const obtenerUsuario = async (db) => {
@@ -48,7 +49,15 @@ const DashboardPage = () => {
     const mascotasCol = collection(db, "mascotas");
     const q = query(mascotasCol, where("id_fundacion", "==", user.uid));
     const mascotaSnapshot = await getDocs(q);
-    const mascotaList = await mascotaSnapshot.docs.map((doc) => doc.data());
+    const mascotaList = await mascotaSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      const id = doc.id;
+
+      return {
+        id,
+        ...data,
+      };
+    });
     setMascotas(mascotaList);
   };
   const obtenerCitas = async (db) => {
@@ -76,6 +85,7 @@ const DashboardPage = () => {
               setSeccionCitas(true);
               setSeccionMascotas(false);
               setSeccionFormMascota(false);
+              setMascotaAEditar({});
             }}
           >
             Mis citas Agendas
@@ -90,6 +100,7 @@ const DashboardPage = () => {
                 setSeccionCitas(false);
                 setSeccionMascotas(true);
                 setSeccionFormMascota(false);
+                setMascotaAEditar({});
               }}
             >
               Mis Mascotas Inscritas
@@ -142,16 +153,18 @@ const DashboardPage = () => {
                 setSeccionCitas(false);
                 setSeccionMascotas(false);
                 setSeccionFormMascota(true);
+                setMascotaAEditar({});
               }}
             >
               Agregar Mascota
             </button>
 
             {mascotas.map((mascota, index) => {
+              console.log(mascota);
               return (
                 <div
                   key={index}
-                  className="border rounded-lg border-sky-600 p-4 mb-5"
+                  className="border rounded-lg border-sky-600 p-4 mb-1"
                 >
                   <p className="mb-2">
                     <span className="text-sky-600">Nombre:</span>{" "}
@@ -171,6 +184,23 @@ const DashboardPage = () => {
                   <p className="mb-2">
                     <span className="text-sky-600">Raza:</span> {mascota.raza}
                   </p>
+
+                  <div className="grid grid-cols-2 mt-5 gap-x-2">
+                    <button
+                      className="rounded-lg bg-sky-600 text-white p-1"
+                      onClick={() => {
+                        setSeccionCitas(false);
+                        setSeccionMascotas(false);
+                        setSeccionFormMascota(true);
+                        setMascotaAEditar(mascota);
+                      }}
+                    >
+                      Editar
+                    </button>
+                    <button className="rounded-lg bg-red-500 text-white p-1">
+                      Eliminar
+                    </button>
+                  </div>
                 </div>
               );
             })}
@@ -184,6 +214,7 @@ const DashboardPage = () => {
             setSeccionFormMascota={setSeccionFormMascota}
             setMascotas={setMascotas}
             mascotas={mascotas}
+            mascotaAEditar={mascotaAEditar}
           />
         )}
       </div>
