@@ -20,7 +20,6 @@ const usuariosRef = collection(db, "usuarios");
 const InfoMascotaPage = () => {
   //Id Parámetro
   let { idMascota } = useParams();
-  // console.log({ idMascota });
 
   //States
   const [mascota, setMascota] = useState({});
@@ -33,24 +32,6 @@ const InfoMascotaPage = () => {
   useEffect(() => {
     obtenerDatosMascota();
   }, []);
-
-  const obtenerDatosMascota = async () => {
-    const mascotaRef = doc(db, "mascotas", idMascota);
-
-    try {
-      const mascotaSnap = await getDoc(mascotaRef);
-      setMascota(mascotaSnap.data());
-    } catch (error) {}
-  };
-
-  const obtenerDatosUsuario = async () => {
-    const q = query(usuariosRef, where("id", "==", user.uid));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // setMascota(doc.data());
-      console.log("usuario:", doc.data());
-    });
-  };
 
   //Context
   const { user } = useContext(UserContext);
@@ -73,6 +54,51 @@ const InfoMascotaPage = () => {
       obtenerDatosUsuario();
       setIsOpenModal(true);
     }
+  };
+
+  const obtenerDatosMascota = async () => {
+    const mascotaRef = doc(db, "mascotas", idMascota);
+
+    try {
+      const mascotaSnap = await getDoc(mascotaRef);
+      setMascota(mascotaSnap.data());
+    } catch (error) {}
+  };
+
+  const obtenerDatosUsuario = async () => {
+    const q = query(usuariosRef, where("id", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // setMascota(doc.data());
+      console.log("usuario:", doc.data());
+    });
+  };
+
+  const crearCita = async () => {
+    console.log("crear cita para la adopción de " + idMascota);
+
+    // Add a new document with a generated id
+    const newCita = doc(collection(db, "citas"));
+
+    // await setDoc(newCita, {
+    //   email_fundacion: user.email,
+    //   email_usuario: "usuario@prueba.cl",
+    //   fecha_inicio: "17 de marzo de 2023, 11:47:10 UTC-3",
+    //   fecha_termino: null,
+    //   finalizada: false,
+    //   id_fundacion: "e0646hPugJNgYMMCq33m5UUk51p1",
+    //   id_mascota: idMascota,
+    //   id_usuario: "4ySCGVcJM7EEEdvnpnUv",
+    //   nombre_fundacion: "AdoptaChile",
+    //   nombre_mascota: "Oddie",
+    //   telefono_fundacion: "+56948955811",
+    // });
+
+    console.log("agregado a la coleccion");
+
+    navigate("/dashboard");
+
+    window.open("https://wa.me/56912345678", "_blank", "noreferrer");
   };
 
   return (
@@ -175,10 +201,9 @@ const InfoMascotaPage = () => {
               fundación para que inicies el proceso de adopción.
             </p>
 
-            <a
-              href="https://wa.me/56912345678"
-              target="_blank"
+            <button
               className="flex w-full mt-5 p-4 bg-green-600 text-white rounded-full font-bold justify-center"
+              onClick={crearCita}
             >
               <img
                 src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-whatsapp-mobile-software-icon-png-image_6315991.png"
@@ -186,7 +211,7 @@ const InfoMascotaPage = () => {
                 className="w-7  bg-white rounded-full p-1 mr-2"
               />
               <p>Hablar con la fundación</p>
-            </a>
+            </button>
           </div>
         )}
       </ModalAdoptar>
