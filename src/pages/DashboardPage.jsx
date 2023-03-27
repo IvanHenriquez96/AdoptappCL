@@ -9,6 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import FormularioMascota from "../components/FormularioMascota";
+import BotonEliminar from "../components/BotonEliminar";
 
 const db = getFirestore(app);
 
@@ -163,7 +164,7 @@ const DashboardPage = () => {
               console.log(mascota);
               return (
                 <div
-                  key={index}
+                  key={mascota.id}
                   className="border rounded-lg border-sky-600 p-4 mb-1"
                 >
                   <p className="mb-2">
@@ -197,9 +198,11 @@ const DashboardPage = () => {
                     >
                       Editar
                     </button>
-                    <button className="rounded-lg bg-red-500 text-white p-1">
-                      Eliminar
-                    </button>
+                    <BotonEliminar
+                      idMascota={mascota.id}
+                      mascotas={mascotas}
+                      setMascotas={setMascotas}
+                    />
                   </div>
                 </div>
               );
