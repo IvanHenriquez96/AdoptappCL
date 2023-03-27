@@ -6,6 +6,20 @@
 
 Vistar el sitio: <https://ihenriquez-adoptappcl.netlify.app/>
 
+## Plataforma en modo de prueba
+
+> La plataforma se encuentra en modo de prueba, mas abajo te otorgo cuentas para que puedas utilizar la plataforma, existen 2 tipos de roles
+
+- **Fundación**: Lista, crea, actualiza y elimina mascotas.
+- **Usuario**: Lista las mascotas disponibles, usa el filtro y simula una adopción.
+
+para hacer estas pruebas puedes usar los siguientes usuarios disponibles.
+
+| Cuenta tipo | Email                                  | Contraseña |
+| :---------- | :------------------------------------- | :--------- |
+| `Usuario`   | `usuario@prueba.cl` (o crea tu cuenta) | prueba123  |
+| `Fundación` | `fundación@prueba.cl`                  | prueba123  |
+
 ## Tecnologías utilizadas
 
 - React con JS
