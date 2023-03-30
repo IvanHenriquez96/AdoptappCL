@@ -7,6 +7,7 @@ import {
   getDocs,
   getFirestore,
   query,
+  setDoc,
   where,
 } from "firebase/firestore";
 import app from "../firebaseConfig";
@@ -27,6 +28,8 @@ const InfoMascotaPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const navigate = useNavigate();
+
+  console.log({ mascota });
 
   //Effect
   useEffect(() => {
@@ -80,21 +83,33 @@ const InfoMascotaPage = () => {
     // Add a new document with a generated id
     const newCita = doc(collection(db, "citas"));
 
-    // await setDoc(newCita, {
-    //   email_fundacion: user.email,
-    //   email_usuario: "usuario@prueba.cl",
-    //   fecha_inicio: "17 de marzo de 2023, 11:47:10 UTC-3",
-    //   fecha_termino: null,
-    //   finalizada: false,
-    //   id_fundacion: "e0646hPugJNgYMMCq33m5UUk51p1",
-    //   id_mascota: idMascota,
-    //   id_usuario: "4ySCGVcJM7EEEdvnpnUv",
-    //   nombre_fundacion: "AdoptaChile",
-    //   nombre_mascota: "Oddie",
-    //   telefono_fundacion: "+56948955811",
-    // });
+    let today = new Date();
+    let date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let dateTime = date + " " + time;
 
-    console.log("agregado a la coleccion");
+    const cita = {
+      email_usuario: user.email,
+      fecha_inicio: dateTime,
+      fecha_termino: null,
+      finalizada: false,
+      id_fundacion: mascota.id_fundacion,
+      id_mascota: idMascota,
+      id_usuario: user.uid,
+      nombre_fundacion: user.displayName,
+      nombre_mascota: mascota.nombre,
+      telefono_fundacion: "+56912345678",
+    };
+
+    // console.log({ cita });
+
+    try {
+      await setDoc(newCita, cita);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // console.log("agregado a la coleccion");
 
     navigate("/dashboard");
 
@@ -103,9 +118,7 @@ const InfoMascotaPage = () => {
 
   return (
     <>
-      <section
-        className={"text-gray-600  body-font overflow-hidden fade-in relative"}
-      >
+      <section className={"text-gray-600  body-font overflow-hidden fade-in relative"}>
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
@@ -147,18 +160,6 @@ const InfoMascotaPage = () => {
                 >
                   Adoptar
                 </button>
-                {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:text-red-300">
-                  <svg
-                    fill="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                  </svg>
-                </button> */}
               </div>
             </div>
 
@@ -169,12 +170,6 @@ const InfoMascotaPage = () => {
             />
           </div>
         </div>
-
-        {/* Galería */}
-
-        {/* <div className="md:text-4xl text-3xl font-bold text-center text-sky-600">
-          Galería
-        </div> */}
       </section>
 
       <ModalAdoptar isOpen={isOpenModal} onClose={handleCloseModal}>
@@ -185,20 +180,14 @@ const InfoMascotaPage = () => {
             </h1>
             <p className="text-gray-800">
               Te pondremos en contácto con la fundación "
-              <span className="font-semibold text-sky-700">
-                {mascota.fundacion}
-              </span>
-              " para que tramites una visita a "
-              <span className="font-semibold text-sky-700">
-                {mascota.nombre}
-              </span>
-              " esperamos que hayas leído la descripción con atención ya que
-              este amiguito puede que necesite de{" "}
-              <span className="font-semibold text-sky-700">
-                Cuidados Especiales
-              </span>
-              , a continuáción vamos a abrir un chat vía Whatsapp con la
-              fundación para que inicies el proceso de adopción.
+              <span className="font-semibold text-sky-700">{mascota.fundacion}</span>"
+              para que tramites una visita a "
+              <span className="font-semibold text-sky-700">{mascota.nombre}</span>"
+              esperamos que hayas leído la descripción con atención ya que este amiguito
+              puede que necesite de{" "}
+              <span className="font-semibold text-sky-700">Cuidados Especiales</span>, a
+              continuáción vamos a abrir un chat vía Whatsapp con la fundación para que
+              inicies el proceso de adopción.
             </p>
 
             <button

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import firebaseApp from "../firebaseConfig";
+import { UserContext } from "../context/UserContext";
 
 const db = getFirestore(firebaseApp);
 
@@ -16,6 +17,9 @@ const FormularioMascota = ({
 }) => {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { user } = useContext(UserContext);
+  console.log(user);
 
   const navigate = useNavigate();
 
@@ -42,8 +46,7 @@ const FormularioMascota = ({
     const errores = [];
 
     datosForm.nombre.trim() === "" && errores.push("Nombre es obligatorio");
-    datosForm.descripcion.trim() === "" &&
-      errores.push("Descripción es obligatorio");
+    datosForm.descripcion.trim() === "" && errores.push("Descripción es obligatorio");
     datosForm.edad.trim() === "" && errores.push("Edad es obligatorio");
     datosForm.raza.trim() === "" && errores.push("Raza es obligatorio");
     datosForm.imagen_perfil.trim() === "" &&
@@ -85,8 +88,8 @@ const FormularioMascota = ({
       discapacidad: datosForm.cuidados_especiales == "Si" ? true : false,
       edad: datosForm.edad,
       especie: datosForm.especie,
-      fundacion: "ChileAdopta",
-      id_fundacion: "e0646hPugJNgYMMCq33m5UUk51p1",
+      fundacion: user.displayName,
+      id_fundacion: user.iud,
       imagen_perfil: datosForm.imagen_perfil,
       nombre: datosForm.nombre,
       raza: datosForm.raza,
@@ -130,9 +133,7 @@ const FormularioMascota = ({
 
   return (
     <div className="min-h-screen fade-in">
-      <h2 className="text-sky-600 text-2xl font-semibold my-5">
-        Formulario Mascota
-      </h2>
+      <h2 className="text-sky-600 text-2xl font-semibold my-5">Formulario Mascota</h2>
 
       <div className="relative my-10 grid grid-cols-2 gap-x-2">
         <label
@@ -220,10 +221,7 @@ const FormularioMascota = ({
       </div>
 
       <div className="relative my-10 grid grid-cols-2 gap-x-2">
-        <label
-          htmlFor="raza"
-          className="leading-7 text-sm text-sky-600 col-span-2"
-        >
+        <label htmlFor="raza" className="leading-7 text-sm text-sky-600 col-span-2">
           Sexo
         </label>
 
@@ -251,10 +249,7 @@ const FormularioMascota = ({
       </div>
 
       <div className="relative my-10 grid grid-cols-2 gap-x-2">
-        <label
-          htmlFor="raza"
-          className="leading-7 text-sm text-sky-600 col-span-2"
-        >
+        <label htmlFor="raza" className="leading-7 text-sm text-sky-600 col-span-2">
           ¿Necesita Cuidados Especiales?
         </label>
 
@@ -264,9 +259,7 @@ const FormularioMascota = ({
               ? "bg-sky-600 text-white"
               : "border-sky-600  text-sky-600"
           }`}
-          onClick={() =>
-            setDatosForm({ ...datosForm, cuidados_especiales: "No" })
-          }
+          onClick={() => setDatosForm({ ...datosForm, cuidados_especiales: "No" })}
         >
           No
         </button>
@@ -277,9 +270,7 @@ const FormularioMascota = ({
               ? "bg-sky-600 text-white"
               : "border-sky-600  text-sky-600"
           }`}
-          onClick={() =>
-            setDatosForm({ ...datosForm, cuidados_especiales: "Si" })
-          }
+          onClick={() => setDatosForm({ ...datosForm, cuidados_especiales: "Si" })}
         >
           Si
         </button>

@@ -1,11 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import firebaseApp from "../firebaseConfig";
@@ -13,7 +9,6 @@ import firebaseApp from "../firebaseConfig";
 import { UserContext } from "../context/UserContext";
 
 const auth = getAuth();
-
 const db = getFirestore(firebaseApp);
 
 const Registro = () => {
@@ -21,6 +16,7 @@ const Registro = () => {
   const navigate = useNavigate();
 
   //State
+  let usuario = {};
   const [datosForm, setDatosForm] = useState({
     nombre_completo: "",
     email: "",
@@ -31,6 +27,7 @@ const Registro = () => {
   const [errores, setErrores] = useState([]);
   const errores_esp = {
     "auth/weak-password": "La contraseña es muy débil",
+    "auth/email-already-in-use": "Ya existe una cuenta con este correo",
   };
 
   //Context
@@ -47,8 +44,7 @@ const Registro = () => {
     datosForm.nombre_completo.trim().length <= 0 &&
       errores.push("Nombre Completo Obligatorio");
     datosForm.email.trim().length <= 0 && errores.push("Email Obligatorio");
-    datosForm.password.trim().length <= 0 &&
-      errores.push("Contraseña Obligatorio");
+    datosForm.password.trim().length <= 0 && errores.push("Contraseña Obligatorio");
     datosForm.repeat_password.trim().length <= 0 &&
       errores.push("Repetir Contraseña Obligatorio");
     datosForm.password.trim() !== datosForm.repeat_password.trim() &&
@@ -74,6 +70,7 @@ const Registro = () => {
       );
 
       setUser(user); //inicia sesión automaticamente
+      usuario = user;
 
       //le agrega el nombre
       updateProfile(user, {
@@ -102,7 +99,8 @@ const Registro = () => {
       return;
     }
 
-    // Add a new document with a generated id
+    // console.log({ user });
+
     const newUser = doc(collection(db, "usuarios"));
 
     // later...
@@ -110,6 +108,7 @@ const Registro = () => {
       nombre: datosForm.nombre_completo,
       email: datosForm.email,
       tipo: "Usuario",
+      id_usuario: usuario.uid,
     });
     console.log("agregado a la coleccion");
 
@@ -131,10 +130,7 @@ const Registro = () => {
             </h2>
 
             <div className="relative mb-4">
-              <label
-                htmlFor="nombre_completo"
-                className="leading-7 text-sm text-sky-600"
-              >
+              <label htmlFor="nombre_completo" className="leading-7 text-sm text-sky-600">
                 Nombre Completo
               </label>
               <input
@@ -159,10 +155,7 @@ const Registro = () => {
               />
             </div>
             <div className="relative mb-4">
-              <label
-                htmlFor="password"
-                className="leading-7 text-sm text-cyan-600"
-              >
+              <label htmlFor="password" className="leading-7 text-sm text-cyan-600">
                 Contraseña
               </label>
               <input

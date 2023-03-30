@@ -3,6 +3,8 @@ import { UserContext } from "../context/UserContext";
 import app from "../firebaseConfig";
 import {
   collection,
+  doc,
+  getDoc,
   getDocs,
   getFirestore,
   query,
@@ -16,6 +18,7 @@ const db = getFirestore(app);
 const DashboardPage = () => {
   //States
   const { user } = useContext(UserContext);
+  let tipo = "Usuario";
   // console.log(user);
 
   const [datosUsuario, setDatosUsuario] = useState("Usuario");
@@ -28,10 +31,14 @@ const DashboardPage = () => {
 
   //Effects
   useEffect(() => {
-    obtenerUsuario(db);
-    obtenerMascotas(db);
-    obtenerCitas(db);
+    cargarDatos();
   }, []);
+
+  const cargarDatos = async () => {
+    await obtenerUsuario(db);
+    await obtenerMascotas(db);
+    await obtenerCitas(db);
+  };
 
   // console.log({ mascotas }, { citas });
 
@@ -42,7 +49,8 @@ const DashboardPage = () => {
     const usuarioSnapshot = await getDocs(q);
     const usuarioList = await usuarioSnapshot.docs.map((doc) => doc.data());
     if (usuarioList[0].tipo === "Fundacion") {
-      setDatosUsuario("Fundacion");
+      await setDatosUsuario("Fundacion");
+      tipo = "Fundacion";
     }
   };
 
@@ -62,10 +70,15 @@ const DashboardPage = () => {
     setMascotas(mascotaList);
   };
   const obtenerCitas = async (db) => {
+    const col = tipo !== "Usuario" ? "id_fundacion" : "id_usuario";
+    console.log(col);
+
     const citasCol = collection(db, "citas");
-    const q = query(citasCol, where("id_fundacion", "==", user.uid));
+    const q = query(citasCol, where(col, "==", user.uid));
+    // const q = query(citasCol, where("id_usuario", "==", user.uid));
     const citasSnapshot = await getDocs(q);
     const citasList = await citasSnapshot.docs.map((doc) => doc.data());
+
     setCitas(citasList);
   };
 
@@ -113,18 +126,13 @@ const DashboardPage = () => {
           <div className="fade-in min-h-screen">
             {citas.map((cita, index) => {
               return (
-                <div
-                  key={index}
-                  className="border rounded-lg border-sky-600 p-4 my-5"
-                >
-                  {/* {console.log(cita.fecha_inicio.seconds)} */}
+                <div key={index} className="border rounded-lg border-sky-600 p-4 my-5">
                   <p>
                     <span className="text-sky-600">Fecha y hora:</span>{" "}
                     {cita.fecha_inicio.seconds}
                   </p>
                   <p>
-                    <span className="text-sky-600">Mascota:</span>{" "}
-                    {cita.nombre_mascota}
+                    <span className="text-sky-600">Mascota:</span> {cita.nombre_mascota}
                   </p>
                   <p>
                     <span className="text-sky-600">Fundación:</span>{" "}
@@ -168,12 +176,10 @@ const DashboardPage = () => {
                   className="border rounded-lg border-sky-600 p-4 mb-1"
                 >
                   <p className="mb-2">
-                    <span className="text-sky-600">Nombre:</span>{" "}
-                    {mascota.nombre}
+                    <span className="text-sky-600">Nombre:</span> {mascota.nombre}
                   </p>
                   <p className="mb-2">
-                    <span className="text-sky-600">Especie:</span>{" "}
-                    {mascota.especie}
+                    <span className="text-sky-600">Especie:</span> {mascota.especie}
                   </p>
                   <p className="mb-2">
                     <span className="text-sky-600">Descripción:</span>{" "}
